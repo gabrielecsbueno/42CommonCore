@@ -1,0 +1,25 @@
+comando para testar
+
+primeiro:
+
+make
+
+testar exemplo compilado:
+
+gcc main.c -L. -lft -I includes -o teste
+
+executar o compilado:
+
+./teste
+
+limpar tudo que foi feito:
+
+make fclean
+
+remover apenas os arquivos objetos:
+
+make clean
+
+recompilar do zero:
+
+make re
