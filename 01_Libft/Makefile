@@ -1,12 +1,15 @@
 # Nome do executavel
-NAME = libft.a
+NAME = teste
 
 # Compilador e flags
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 # Arquivos fontes para compilar
-SRCS = ft_isalpha.c
+SRCS = main.c ft_isalpha.c ft_isalnum.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_strlen.c ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c
+
+# Arquivos de cabecalho
+HEADER = libft.h
 
 # Arquivos objetos
 OBJ = $(SRCS:.c=.o)
@@ -16,10 +19,14 @@ all: $(NAME)
 
 # Regra principal - cria biblioteca
 $(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
-
-# Compilar o binario
-$(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+	rm -f $(OBJ)
 
-.PHONY: all
+# remove os ojbetos e a biblioteca
+fclean:
+	rm -f $(NAME)
+
+# recompila tudo de novo
+re: fclean all
+
+.PHONY: all clean fclean re
