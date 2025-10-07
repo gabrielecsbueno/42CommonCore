@@ -1,0 +1,36 @@
+# Nome do executavel
+NAME = libft.a
+
+# Compilador e flags
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+
+# Arquivos fontes para compilar
+SRCS = ft_isalpha.c ft_isalnum.c ft_isascii.c ft_isdigit.c ft_isprint.c
+
+# Arquivos objetos
+OBJ = $(SRCS:.c=.o)
+
+# Regra principal
+all: $(NAME)
+
+# Regra principal - cria biblioteca
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
+
+# Compilar os .c em .o
+%.o: %.c libft.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# remove os objetos
+clean:
+	rm -f $(OBJ)
+
+# remove os ojbetos e a biblioteca
+fclean:
+	rm -f $(NAME) $(OBJ)
+
+# recompila tudo de novo
+re: fclean all
+
+.PHONY: all clean fclean re
