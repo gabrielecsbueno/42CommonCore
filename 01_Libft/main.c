@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 08:14:28 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/10/07 13:07:27 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/10/08 12:01:21 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,21 @@
 
 #include <ctype.h>
 #include <string.h>
+#include <stdlib.h>
+
+void	imprime_n(int *n)
+{
+	int	i = 0;
+	while (i < 5)
+	{
+		printf("%d ", n[i]);
+		i++;
+	}
+	printf("\n\n");
+}
 
 int	main(void)
 {
-	int	i;
 	/* teste do Isalpha */
 	printf("------ ft_isalpha ------\n\n");
 	char	a1 = 'A';
@@ -103,23 +114,21 @@ int	main(void)
 
 	//teste do Memset 	NAO ESTA FEITA
 	printf("------ ft_memset ------\n\n");
-	int	strn1[5] = {10, 20, 30, 40, 50};
+	int		n_set[5] = {10, 20, 30, 40, 50};
+	char	t_set[18] = "Buenos dias amigos";
 
-	memset(strn1, 0, 18);
-	i = 0;
 	printf("O . ");
-	while (i < 5)
-	{
-		printf("%d ", strn1[i]);
-		i++;
-	}
-	printf("\n\n");
-	memset(str1, '!', sizeof(str1));
-	printf("O . %s\n\n", str1);
+	memset(n_set, 1802, 4);
+	imprime_n(n_set);
+	memset(t_set, '!', sizeof(t_set));
+	printf("O . %s\n\n", t_set);
 
-	//teste do bsero
+	//teste do bzero
+	printf("------ ft_bzero ------\n\n");
 	//teste do memcpy
+	printf("------ ft_memcpy ------\n\n");
 	//teste do memmove
+	printf("------ ft_memmove ------\n\n");
 
 	//teste do strlcpy
 	printf("------ ft_strlcpy ------\n\n");
@@ -166,6 +175,93 @@ int	main(void)
 	printf ("O . La letra es : %c \n\n", rtwer);
 	rtwer = ft_tolower(ctwer);
 	printf ("C . La letra es : %c \n\n", rtwer);
+
+	//teste do strchr
+	printf("------ ft_strchr ------\n\n");
+	char	chr[] = "Hello World";
+	char	c_chr = 'W';
+
+	char	*chr_ptr = strchr(chr, c_chr);
+	if (chr_ptr != NULL)
+  		printf("O . %s \n\n", chr_ptr);
+	else
+		printf("O . caractere nao encontrado \n\n");
+
+	char	*chr_ptr2 = ft_strchr(chr, c_chr);
+	if (chr_ptr2 != NULL)
+  		printf("C . %s \n\n", chr_ptr2);
+	else
+		printf("C . caractere nao encontrado \n\n");
+
+	//teste do strrchr
+	printf("------ ft_strrchr ------\n\n");
+	char	rchr[] = "Hello World";
+	char	c_rchar = 'l';
+
+	char	*rchr_ptr = strrchr(rchr, c_rchar);
+	if (rchr_ptr != NULL)
+  		printf("O . %s \n\n", rchr_ptr);
+	else
+		printf("O . caractere nao encontrado \n\n");
+
+	char	*rchr_ptr2 = ft_strrchr(rchr, c_rchar);
+	if (rchr_ptr2 != NULL)
+  		printf("C . %s \n\n", rchr_ptr2);
+	else
+		printf("C . caractere nao encontrado \n\n");
+
+	//teste do strncmp
+	printf("------ ft_strncmp ------\n\n");
+	char	cmp1[] = "Oi";
+	char	cmp2[] = "Oi Meninos";
+	size_t	c_cmp = 5;
+	int		ret_cmp;
+
+	ret_cmp = strncmp(cmp1, cmp2, c_cmp);
+	if (ret_cmp < 0)
+		printf("O . '%s' é menor que '%s' - Return = %d \n\n", cmp1, cmp2, ret_cmp);
+	else if (ret_cmp > 0)
+		printf("O . '%s' é maior que '%s' - Return = %d \n\n", cmp1, cmp2, ret_cmp);
+	else if (ret_cmp == 0)
+		printf("O . '%s' é igual a '%s' - Return = %d \n\n", cmp1, cmp2, ret_cmp);
+
+	ret_cmp = ft_strncmp(cmp1, cmp2, c_cmp);
+	if (ret_cmp < 0)
+		printf("C . '%s' é menor que '%s' - Return = %d \n\n", cmp1, cmp2, ret_cmp);
+	else if (ret_cmp > 0)
+		printf("C . '%s' é maior que '%s' - Return = %d \n\n", cmp1, cmp2, ret_cmp);
+	else if (ret_cmp == 0)
+		printf("C . '%s' é igual a '%s' - Return = %d \n\n", cmp1, cmp2, ret_cmp);
+
+
+	//teste do memchr
+	printf("------ ft_memchr ------\n\n");
+
+
+	//teste do memstr
+	printf("------ ft_memstr ------\n\n");
+
+	//teste do strnstr
+	printf("------ ft_strnstr ------\n\n");
+	char	strn_t[] = "O rato roeu a roupa do rei de roma";
+	char	strn_b[] = "rom";
+
+	char	*strn_prt = ft_strnstr(strn_t, strn_b, 34);
+
+	if (strn_prt)
+		printf("C . Encontrado : '%s' \n\n", strn_prt);
+	else
+		printf("C . No encontrado %s \n\n", strn_prt);
+
+	//teste do atoi
+	printf("------ ft_atoi ------\n\n");
+	char	t_atoi[] = "-2147483649";
+
+	int		n_atoi = atoi(t_atoi);
+	printf("O . numero = %d\n\n", n_atoi);
+
+	n_atoi = ft_atoi(t_atoi);
+	printf("C . numero = %d\n\n", n_atoi);
 
 	// fim dos testes
 	return (0);
