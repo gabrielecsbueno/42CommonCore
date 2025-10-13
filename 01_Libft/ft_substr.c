@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabde-so <gabde-so@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/11 00:00:30 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/10/13 09:39:18 by gabde-so         ###   ########.fr       */
+/*   Created: 2025/10/13 11:31:05 by gabde-so          #+#    #+#             */
+/*   Updated: 2025/10/13 12:19:37 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*s;
-	size_t	bytes;
+	size_t	i;
+	char	*d;
 
-	bytes = nmemb * size;
-	if (bytes == 0)
+	d = ft_strdup(s);
+	if (d == NULL)
 		return (NULL);
-	s = malloc(bytes);
-	if (s == NULL)
-		return (NULL);
-	ft_bzero(s, bytes);
-	return (s);
+	i = 0;
+	while (i < len)
+	{
+		d[i] = start + i;
+		i++;
+	}
+	d[i] = '\0';
+	return (d);
 }

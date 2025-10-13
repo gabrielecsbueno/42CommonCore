@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 08:14:28 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/10/13 09:39:24 by gabde-so         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <stdio.h>
 #include "libft.h"
 
@@ -31,6 +19,7 @@ void	imprime_n(int *n, int size)
 
 int	main(void)
 {
+	printf("\n------------------------------ PARTE 1 ------------------------------\n\n");
 	/* teste do Isalpha */
 	printf("------ ft_isalpha ------------------------------\n\n");
 	char	a1 = 'A';
@@ -200,29 +189,31 @@ int	main(void)
 	ft_memmove((s2_mmv + 3), s2_mmv, 7);
 	printf("    Copia = %s\n\n", s2_mmv);
 
-	//teste do strlcpy KO
+	//teste do strlcpy
 	printf("------ ft_strlcpy ------------------------------\n\n");
 	char	cpyl[8] = "bom dia";
-	char	cpy2[8] = "BOM DIA";
+//	char	cpy2[8] = "BOM DIA";
 	char	cpy3[10];
 	size_t	sizecpy = 6;
 	size_t	rtcpy;
-
+/*
 	rtcpy = strlcpy(cpy2, cpyl, sizecpy);
 	printf("O . La frase = %s - copiada %zux\n\n    Str copia = %s - tamanho original = %zu \n\n",cpyl, sizecpy, cpy2, rtcpy);
+*/
 	rtcpy = ft_strlcpy(cpy3, cpyl, sizecpy);
 	printf("C . La frase = %s - copiada %zux\n\n    Str copia = %s - tamanho original = %zu \n\n",cpyl, sizecpy, cpy3, rtcpy);
 
 	//teste do strlcat
 	printf("------ ft_strlcat ------------------------------\n\n");
 	char	cat[] = "Dia";
-	char	cat1[20] = "Bom ";
+//	char	cat1[20] = "Bom ";
 	char	cat2[20] = "Bom ";
 	size_t	sizecat = 9;
 	size_t	rtcat;
-
+/*
 	rtcat = strlcat(cat1, cat, sizecat);
 	printf("O . %s - tamanho = %zu \n\n", cat1, rtcat);
+*/
 	rtcat = ft_strlcat(cat2, cat, sizecat);
 	printf("C . %s - tamanho = %zu \n\n", cat2, rtcat);
 
@@ -379,7 +370,7 @@ int	main(void)
 	int n_cloc = 15;
 
 	int *s1_cloc = calloc(n_cloc, sizeof(int));
-	int *s2_cloc = calloc(n_cloc, sizeof(int));
+	int *s2_cloc = ft_calloc(n_cloc, sizeof(int));
 
 	imprime_n(s1_cloc, n_cloc);
 	imprime_n(s2_cloc, n_cloc);
@@ -390,6 +381,27 @@ int	main(void)
 
 	//teste do strdup
 	printf("------ ft_strdup ------------------------------\n\n");
+	char	s_dup[] = "O rato roeu a roupa do rei de roma";
+	char	*d1_dup = strdup(s_dup);
+	char	*d2_dup = ft_strdup(s_dup);
+	size_t	size_s = strlen(s_dup);
+	size_t	size_d1 = strlen(d1_dup);
+	size_t	size_d2 = strlen(d2_dup);	
+	
+	printf("O . Frase = %s - tamanho = %zu\n\n", s_dup, size_s);
+	printf("O . Copia = %s - tamanho = %zu\n\n", d1_dup, size_d1);
+	free(d1_dup);
+	printf("C . Frase = %s - tamanho = %zu\n\n", s_dup, size_s);
+	printf("C . Copia = %s - tamanho = %zu\n\n", d2_dup, size_d2);
+	free(d2_dup);
+
+	//teste do strdup
+	printf("\n\n------------------------------ PARTE 2 ------------------------------\n\n");
+	const char	*s;
+	char		*d = ft_substr(s, 1, 10);
+
+	printf("%s\n\n", d);
+	free(d);
 
 	// fim dos testes
 
