@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:05:49 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/10/07 17:37:56 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/10/10 18:21:25 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ char	*ft_strrchr(const char *s, int c)
 			return ((char *) s);
 		i--;
 	}
+	if ((char)c == '\0')
+		return ((char *)s);
 	return (NULL);
 }

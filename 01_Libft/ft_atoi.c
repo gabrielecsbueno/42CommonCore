@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:02:36 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/10/08 10:38:16 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/10/10 23:58:06 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ int	ft_atoi(const char *nptr)
 	int	n;
 	int	i;
 
-	i = 0;
+	i = 1;
+	while (*nptr == ' ' || (*nptr >= 9 && *nptr <= 13))
+		nptr++;
 	if (*nptr == '-' || *nptr == '+')
 	{
 		if (*nptr == '-')
-			i++;
+			i = -1;
 		nptr++;
 	}
 	n = 0;
@@ -30,7 +32,5 @@ int	ft_atoi(const char *nptr)
 		n = n * 10 + (*nptr - '0');
 		nptr++;
 	}
-	if (i)
-		return (-n);
-	return (n);
+	return (n * i);
 }

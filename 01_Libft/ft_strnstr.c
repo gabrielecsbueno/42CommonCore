@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:10:52 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/10/07 22:07:15 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/10/10 18:28:22 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	size_t	n;
 
 	l_cont = ft_strlen(little);
+	if (l_cont == 0)
+		return ((char *)big);
 	i = 0;
-	while (*big && *little && i < len)
+	while (big[i] && i < len)
 	{
 		n = 0;
 		while (big[i + n] == little[n] && n < l_cont && (i + n) < len)
