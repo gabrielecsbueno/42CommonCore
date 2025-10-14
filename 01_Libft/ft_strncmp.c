@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:08:04 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/10/07 20:09:57 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/10/14 11:22:42 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t	i;
+	size_t			i;
+	unsigned char	c1;
+	unsigned char	c2;
 
 	i = 0;
 	while (i < n)
 	{
-		if (s1[i] < s2[i])
-			return (s1[i] - s2[i]);
-		if (s1[i] > s2[i])
-			return (s1[i] - s2[i]);
+		c1 = (unsigned char)s1[i];
+		c2 = (unsigned char)s2[i];
+		if (c1 != c2 || c1 == '\0' || c2 == '\0')
+			return (c1 - c2);
 		i++;
 	}
 	return (0);

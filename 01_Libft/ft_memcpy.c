@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:05:48 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/10/10 16:10:16 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/10/14 12:36:10 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	const unsigned char	*byte_s;
 	unsigned char		*byte_d;
 
+	if (!dest && !src)
+		return (NULL);
 	byte_s = (const unsigned char *)src;
 	byte_d = (unsigned char *)dest;
 	i = 0;

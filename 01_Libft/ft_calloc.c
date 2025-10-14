@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 00:00:30 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/10/13 09:39:18 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/10/14 12:51:51 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	size_t	bytes;
 
 	bytes = nmemb * size;
-	if (bytes == 0)
-		return (NULL);
 	s = malloc(bytes);
 	if (s == NULL)
 		return (NULL);
