@@ -5,6 +5,7 @@
 #include <locale.h> // para imprimir o é
 #include <string.h>
 #include <stdlib.h>
+#include <bsd/string.h>
 
 void	imprime_n(int *n, int size)
 {
@@ -175,7 +176,6 @@ int	main(void)
 	printf("    Agora son = ");
 	imprime_n(d_int2, (sizeof(d_int2)/4));
 
-
 	//teste do memmove
 	printf("------ ft_memmove ------------------------------\n\n");
 	char	s1_mmv[] = "ABCDEFGHIJ";
@@ -192,28 +192,28 @@ int	main(void)
 	//teste do strlcpy
 	printf("------ ft_strlcpy ------------------------------\n\n");
 	char	cpyl[8] = "bom dia";
-//	char	cpy2[8] = "BOM DIA";
+	char	cpy2[8] = "BOM DIA";
 	char	cpy3[10];
 	size_t	sizecpy = 6;
 	size_t	rtcpy;
-/*
+
 	rtcpy = strlcpy(cpy2, cpyl, sizecpy);
 	printf("O . La frase = %s - copiada %zux\n\n    Str copia = %s - tamanho original = %zu \n\n",cpyl, sizecpy, cpy2, rtcpy);
-*/
+
 	rtcpy = ft_strlcpy(cpy3, cpyl, sizecpy);
 	printf("C . La frase = %s - copiada %zux\n\n    Str copia = %s - tamanho original = %zu \n\n",cpyl, sizecpy, cpy3, rtcpy);
 
 	//teste do strlcat
 	printf("------ ft_strlcat ------------------------------\n\n");
 	char	cat[] = "Dia";
-//	char	cat1[20] = "Bom ";
+	char	cat1[20] = "Bom ";
 	char	cat2[20] = "Bom ";
 	size_t	sizecat = 9;
 	size_t	rtcat;
-/*
+
 	rtcat = strlcat(cat1, cat, sizecat);
 	printf("O . %s - tamanho = %zu \n\n", cat1, rtcat);
-*/
+
 	rtcat = ft_strlcat(cat2, cat, sizecat);
 	printf("C . %s - tamanho = %zu \n\n", cat2, rtcat);
 
@@ -297,8 +297,23 @@ int	main(void)
 		printf("C . '%s' é maior que '%s' - Return = %d \n\n", cmp1, cmp2, ret_cmp);
 	else if (ret_cmp == 0)
 		printf("C . '%s' é igual a '%s' - Return = %d \n\n", cmp1, cmp2, ret_cmp);
+//teste da francinette
+	ret_cmp = strncmp("test\200", "test\0", 6);
+	if (ret_cmp < 0)
+		printf("O . 'test 200' é menor que 'test 0' - Return = %d \n\n", ret_cmp);
+	else if (ret_cmp > 0)
+		printf("O . 'test 200' é maior que 'test 0' - Return = %d \n\n", ret_cmp);
+	else if (ret_cmp == 0)
+		printf("O . 'test 200' é igual a 'test 0' - Return = %d \n\n", ret_cmp);
 
-
+	ret_cmp = ft_strncmp("test\200", "test\0", 6);
+	if (ret_cmp < 0)
+		printf("C . 'test 200' é menor que 'test 0' - Return = %d \n\n", ret_cmp);
+	else if (ret_cmp > 0)
+		printf("C . 'test 200' é maior que 'test 0' - Return = %d \n\n", ret_cmp);
+	else if (ret_cmp == 0)
+		printf("C . 'test 200' é igual a 'test 0' - Return = %d \n\n", ret_cmp);
+//fim do teste da francinette
 	//teste do memchr
 	printf("------ ft_memchr ------------------------------\n\n");
 	char	mchr[] = "Hello World";
@@ -317,6 +332,13 @@ int	main(void)
   		printf("    Encontrado en = %s \n\n", mchr_ptr);
 	else
 		printf("    Nao encontrado \n\n");
+
+// teste da francinette
+	int teste6[7] = {-49, 49, 1, -1, 0, -2, 2};
+    printf("O . %s\n\n", (char *)memchr(teste6, -1, 7));
+	int teste9[7] = {-49, 49, 1, -1, 0, -2, 2};
+    printf("C . %s\n\n", (char *)ft_memchr(teste9, -1, 7));
+//fim do teste da francinette
 
 	//teste do memcmp
 	printf("------ ft_memcmp ------------------------------\n\n");
@@ -386,8 +408,8 @@ int	main(void)
 	char	*d2_dup = ft_strdup(s_dup);
 	size_t	size_s = strlen(s_dup);
 	size_t	size_d1 = strlen(d1_dup);
-	size_t	size_d2 = strlen(d2_dup);	
-	
+	size_t	size_d2 = strlen(d2_dup);
+
 	printf("O . Frase = %s - tamanho = %zu\n\n", s_dup, size_s);
 	printf("O . Copia = %s - tamanho = %zu\n\n", d1_dup, size_d1);
 	free(d1_dup);
@@ -395,13 +417,28 @@ int	main(void)
 	printf("C . Copia = %s - tamanho = %zu\n\n", d2_dup, size_d2);
 	free(d2_dup);
 
-	//teste do strdup
 	printf("\n\n------------------------------ PARTE 2 ------------------------------\n\n");
-	const char	*s;
-	char		*d = ft_substr(s, 1, 10);
+	//teste do substr
+	printf("------ ft_substr ------------------------------\n\n");
+	char s_str[8] = "bonjour";
+	char *s_sub = ft_substr(s_str, 5, 8);
+	printf("Frase = %s\nSubstring = %s\n\n", s_str, s_sub);
+	free(s_sub);
 
-	printf("%s\n\n", d);
-	free(d);
+	//teste do strjoin
+	printf("------ ft_strjoin ------------------------------\n\n");
+	char	s1_join[] = "bom ";
+	char	s2_join[] = "dia";
+	char	*d_join = ft_strjoin(s1_join, s2_join);
+	printf("Frase = %s\n\n", d_join);
+	free(d_join);
+
+	//teste do strtrim
+	printf("------ ft_strtrim ------------------------------\n\n");
+	char	s_trim[] = "Amanheceu e o ceu esta lindo";
+	char	*dest = ft_strtrim(s_trim, "ceu");
+	printf("%s\n\n", dest);
+	free(dest);
 
 	// fim dos testes
 
