@@ -435,10 +435,17 @@ int	main(void)
 
 	//teste do strtrim
 	printf("------ ft_strtrim ------------------------------\n\n");
-	char	s_trim[] = "Amanheceu e o ceu esta lindo";
-	char	*dest = ft_strtrim(s_trim, "ceu");
+	char	s_trim[] = "--++L++--";
+	char	*dest = ft_strtrim(s_trim, "-+");
 	printf("%s\n\n", dest);
 	free(dest);
+
+	//teste do split
+	printf("------ ft_split ------------------------------\n\n");
+	char	s_spt [] = "Gabriele Bueno";
+	char	**r_spt = ft_split(s_spt, ' ');
+
+	printf("Primeira = %s\nSegunda = %s\n\n", *r_spt[0], *r_spt[1]);
 
 	// fim dos testes
 
