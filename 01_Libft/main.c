@@ -191,7 +191,7 @@ int	main(void)
 
 	//teste do strlcpy
 	printf("------ ft_strlcpy ------------------------------\n\n");
-	char	cpyl[8] = "bom dia";
+/*	char	cpyl[8] = "bom dia";
 	char	cpy2[8] = "BOM DIA";
 	char	cpy3[10];
 	size_t	sizecpy = 6;
@@ -202,10 +202,10 @@ int	main(void)
 
 	rtcpy = ft_strlcpy(cpy3, cpyl, sizecpy);
 	printf("C . La frase = %s - copiada %zux\n\n    Str copia = %s - tamanho original = %zu \n\n",cpyl, sizecpy, cpy3, rtcpy);
-
+*/
 	//teste do strlcat
 	printf("------ ft_strlcat ------------------------------\n\n");
-	char	cat[] = "Dia";
+/*	char	cat[] = "Dia";
 	char	cat1[20] = "Bom ";
 	char	cat2[20] = "Bom ";
 	size_t	sizecat = 9;
@@ -216,7 +216,7 @@ int	main(void)
 
 	rtcat = ft_strlcat(cat2, cat, sizecat);
 	printf("C . %s - tamanho = %zu \n\n", cat2, rtcat);
-
+*/
 	//teste do toupper
 	printf("------ ft_toupper ------------------------------\n\n");
 	char	ctper = 'g';
@@ -442,11 +442,34 @@ int	main(void)
 
 	//teste do split
 	printf("------ ft_split ------------------------------\n\n");
-	char	s_spt [] = "Gabriele Bueno";
-	char	**r_spt = ft_split(s_spt, ' ');
+	char	s_spt [] = "GabiBueno";
+	char	**r_spt = ft_split(s_spt, 'i');
 
-	printf("Primeira = %s\nSegunda = %s\n\n", *r_spt[0], *r_spt[1]);
-
+	printf("Primeira = %s\nSegunda = %s\n\n", r_spt[0], r_spt[1]);
+	free (r_spt);
+	
+	//teste do itoa FRANCINETTE VAGABUNDA
+	printf("------ ft_itoa ------------------------------\n\n");
+	int	n_itoa = -2147483648;
+	char	*r_itoa = ft_itoa(n_itoa);
+	printf("%s\n\n", r_itoa);
+	free(r_itoa);
+	
+	//teste do STRMAPI
+	printf("------ ft_strmapi ------------------------------\n\n");
+	
+	
+	//teste do STRITERI
+	printf("------ ft_striteri ------------------------------\n\n");
+	
+	//teste do PUTCHAR_FD
+	printf("------ ft_putchar_fd ------------------------------\n\n");
+	FILE *fd;
+	
+	fd = fopen("hello.txt", "w");
+	ft_putchar_fd('A', fd);
+	fclose(fd);
+	
 	// fim dos testes
 
 	printf("---------------------------------------------\n\n");
