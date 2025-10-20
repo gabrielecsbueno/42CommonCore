@@ -6,6 +6,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <bsd/string.h>
+#include <fcntl.h>     // para open()
+#include <unistd.h>    // para close()
 
 void	imprime_n(int *n, int size)
 {
@@ -422,7 +424,7 @@ int	main(void)
 	printf("------ ft_substr ------------------------------\n\n");
 	char s_str[8] = "bonjour";
 	char *s_sub = ft_substr(s_str, 5, 8);
-	printf("Frase = %s\nSubstring = %s\n\n", s_str, s_sub);
+	printf("Frase = %s\n\nSubstring = %s\n\n", s_str, s_sub);
 	free(s_sub);
 
 	//teste do strjoin
@@ -435,41 +437,78 @@ int	main(void)
 
 	//teste do strtrim
 	printf("------ ft_strtrim ------------------------------\n\n");
-	char	s_trim[] = "--++L++--";
-	char	*dest = ft_strtrim(s_trim, "-+");
-	printf("%s\n\n", dest);
+	char	s_trim[] = "  \t \t \n   \n\n\n\t";
+	char	*dest = ft_strtrim(s_trim, " \n\t");
+	printf("Frase original = |%s|\n\n", s_trim);
+	printf("Frase cortada  = |%s|\n\n", dest);
 	free(dest);
 
 	//teste do split
 	printf("------ ft_split ------------------------------\n\n");
-	char	s_spt [] = "GabiBueno";
-	char	**r_spt = ft_split(s_spt, 'i');
+	char	s_spt [] = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse";
+	char	**r_spt = ft_split(s_spt, ' ');
+	int		i = 0;
 
-	printf("Primeira = %s\nSegunda = %s\n\n", r_spt[0], r_spt[1]);
+	printf("Frase = %s\n\n", s_spt);
+	while(r_spt[i])
+	{
+			ft_putstr_fd(r_spt[i], 1);
+			ft_putstr_fd("|", 1);
+			i++;
+	}
+	printf("\n\n");
 	free (r_spt);
-	
-	//teste do itoa FRANCINETTE VAGABUNDA
+
+	//teste do itoa
 	printf("------ ft_itoa ------------------------------\n\n");
-	int	n_itoa = -2147483648;
+	int	n_itoa = 2147483647;
 	char	*r_itoa = ft_itoa(n_itoa);
-	printf("%s\n\n", r_itoa);
+	printf("En el INT = %d\n\n", n_itoa);
+	printf("En la STR = %s\n\n", r_itoa);
 	free(r_itoa);
-	
+
 	//teste do STRMAPI
 	printf("------ ft_strmapi ------------------------------\n\n");
-	
-	
+
 	//teste do STRITERI
 	printf("------ ft_striteri ------------------------------\n\n");
-	
+
 	//teste do PUTCHAR_FD
 	printf("------ ft_putchar_fd ------------------------------\n\n");
-	FILE *fd;
-	
-	fd = fopen("hello.txt", "w");
-	ft_putchar_fd('A', fd);
-	fclose(fd);
-	
+/*	int	fd = open("arq-putchar.txt", O_WRONLY | O_CREAT | O_TRUNC, 777);
+	if (fd < 0)
+		return (1);
+	ft_putchar_fd('O', fd);
+	ft_putchar_fd('i', fd);
+	close(fd);
+*/	printf("ARQUIVO 'arq-putchar.txt' CRIADO NO DIRETORIO ATUAL\n\n");
+
+	//teste do PUTSTR_FD
+	printf("------ ft_putstr_fd ------------------------------\n\n");
+/*	int	fd = open("arq-putstr.txt", O_WRONLY | O_CREAT | O_TRUNC, 777);
+	if (fd < 0)
+		return (1);
+	ft_putstr_fd("Oi mundo", fd);
+	close(fd);
+*/	printf("ARQUIVO 'arq-putstr.txt' CRIADO NO DIRETORIO ATUAL\n\n");
+
+	//teste do PUTENDL_FD
+	printf("------ ft_putendl_fd ------------------------------\n\n");
+/*	int	fd = open("arq-putendl.txt", O_WRONLY | O_CREAT | O_TRUNC, 777);
+	if (fd < 0)
+		return (1);
+	ft_putendl_fd("Oi mundo", fd);
+	close(fd);
+*/	printf("ARQUIVO 'arq-putstr.txt' CRIADO NO DIRETORIO ATUAL\n\n");
+
+	//teste do PUTNBR_FD
+	printf("------ ft_putnbr_fd ------------------------------\n\n");
+/*	int	fd = open("arq-putnbr.txt", O_WRONLY | O_CREAT | O_TRUNC, 777);
+	if (fd < 0)
+		return (1);
+	ft_putnbr_fd(-2147483648, fd);
+	close(fd);
+*/	printf("ARQUIVO 'arq-putnbr.txt' CRIADO NO DIRETORIO ATUAL\n\n");
 	// fim dos testes
 
 	printf("---------------------------------------------\n\n");
