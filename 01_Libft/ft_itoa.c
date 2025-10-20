@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabde-so <gabde-so@student.42barcelon      +#+  +:+       +#+        */
+/*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 11:16:10 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/10/16 11:16:13 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/10/20 16:54:15 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,28 @@ static int	ft_size(int n)
 char	*ft_itoa(int n)
 {
 	char	*s;
-	int	i;
-	int	size;
+	int		size;
+	int		sign;
 
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
 	size = ft_size(n);
 	s = (char *) malloc(size + 1);
 	if (s == NULL)
 		return (NULL);
-	i = 0;
+	sign = 0;
 	if (n < 0)
 	{
-		s[i] = '-';
+		sign = 1;
 		n = -n;
-		i++;
 	}
 	s[size] = '\0';
-	while (i < size)
+	while (size > sign)
 	{
-		size--;
-		s[size] = (n % 10) + '0';
+		s[--size] = (n % 10) + '0';
 		n = n / 10;
 	}
+	if (sign)
+		s[0] = '-';
 	return (s);
 }

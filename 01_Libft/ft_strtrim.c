@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 01:01:22 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/10/15 12:46:17 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/10/20 23:57:56 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	end = ft_strlen(s1) - 1;
 	if (ft_strlen(set) == 0)
 	{
-		dest = ft_substr(s1, start, end);
+		dest = ft_substr(s1, start, ft_strlen(s1));
 		if (dest == NULL)
 			return (NULL);
 		return (dest);
@@ -55,6 +55,11 @@ char	*ft_strtrim(char const *s1, char const *set)
 				end--;
 			i++;
 		}
+	}
+	if (start > end)
+	{
+		dest = ft_strdup("");
+		return (dest);
 	}
 	dest = ft_substr(s1, start, (end - start + 1));
 	if (dest == NULL)
