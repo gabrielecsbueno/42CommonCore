@@ -10,4 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-t_list *ft_lstnew(void *content);
+/*
+typedef struct	s_list          // Cria uma STRUCT para armazenar os dados de s_list
+{
+	void			*content;   // define o campo content
+	struct s_list	*next;      // define o campo next
+}					t_list;     // Define o nome do novo tipo criado
+*/
+
+#include "libft.h"
+
+t_list  *ft_lstnew(void *content)
+{
+    
+}
