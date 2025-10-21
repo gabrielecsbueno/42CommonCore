@@ -1,0 +1,33 @@
+# Nome do executavel
+NAME = bonus
+
+# Compilador e flags
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -lbsd
+
+# Arquivos fontes para compilar
+SRCS = main_pt2.c libft.a
+
+# Arquivos de cabecalho
+HEADER = libft.h
+
+# Arquivos objetos
+OBJ = $(SRCS:.c=.o)
+
+# Regra principal
+all: $(NAME)
+
+# Regra principal - cria biblioteca
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+	./bonus
+
+# remove os ojbetos e a biblioteca
+fclean:
+	rm -f $(OBJ)
+	rm -f $(NAME)
+
+# recompila tudo de novo
+re: fclean all
+
+.PHONY: all clean fclean re

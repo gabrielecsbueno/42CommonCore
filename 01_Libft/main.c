@@ -461,7 +461,7 @@ int	main(void)
 
 	//teste do itoa
 	printf("------ ft_itoa ------------------------------\n\n");
-	int	n_itoa = 2147483647;
+	int	n_itoa = -2147483647;
 	char	*r_itoa = ft_itoa(n_itoa);
 	printf("En el INT = %d\n\n", n_itoa);
 	printf("En la STR = %s\n\n", r_itoa);

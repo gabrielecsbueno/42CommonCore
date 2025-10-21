@@ -35,7 +35,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!d)
 		return (NULL);
 	i = 0;
-	while (i < len && s[start + i] != '\0')
+	while (i++ < len && s[start + i] != '\0')
 	{
 		d[i] = s[start + i];
 		i++;
