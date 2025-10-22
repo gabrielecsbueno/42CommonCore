@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/17 12:15:39 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/10/21 21:26:54 by gabde-so         ###   ########.fr       */
+/*   Created: 2025/10/22 10:28:23 by gabde-so          #+#    #+#             */
+/*   Updated: 2025/10/22 15:47:50 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+/*
+typedef struct s_list
 {
-	size_t		i;
-	char		*dest;
+	void			*content;
+	struct s_list	*next;
+}					t_list;
+*/
 
-	if (!s || !f)
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*node;
+
+	node = malloc (sizeof(t_list));
+	if (!node)
 		return (NULL);
-	i = 0;
-	dest = (char *) malloc (ft_strlen(s) + 1);
-	if (dest == NULL)
-		return (NULL);
-	while (s[i])
-	{
-		dest[i] = f(i, s[i]);
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+	node->content = ft_strdup(content);
+	node->next = NULL;
+
+	return (node);
 }
