@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 01:01:22 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/10/20 23:57:56 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/10/23 12:16:21 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,39 +30,18 @@ char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		start;
 	int		end;
-	int		i;
 	char	*dest;
 
 	if (!s1 || !set)
 		return (NULL);
 	start = 0;
-	end = ft_strlen(s1) - 1;
-	if (ft_strlen(set) == 0)
-	{
-		dest = ft_substr(s1, start, ft_strlen(s1));
-		if (dest == NULL)
-			return (NULL);
-		return (dest);
-	}
-	while (start <= end && (ft_isset(s1[start], set) || ft_isset(s1[end], set)))
-	{
-		i = 0;
-		while (set[i])
-		{
-			if (s1[start] == set[i])
-				start++;
-			if (s1[end] == set[i])
-				end--;
-			i++;
-		}
-	}
-	if (start > end)
-	{
-		dest = ft_strdup("");
-		return (dest);
-	}
-	dest = ft_substr(s1, start, (end - start + 1));
-	if (dest == NULL)
+	end = ft_strlen(s1);
+	while (s1[start] && ft_isset(s1[start], set))
+		start++;
+	while (end > start && ft_isset(s1[end - 1], set))
+		end--;
+	dest = ft_substr(s1, start, end - start);
+	if (!dest)
 		return (NULL);
 	return (dest);
 }

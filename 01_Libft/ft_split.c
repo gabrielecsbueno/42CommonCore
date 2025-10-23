@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 10:29:42 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/10/20 16:05:01 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/10/23 13:03:49 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	ft_contword(char const *s, char c)
 	{
 		while (s[i] && s[i] == c)
 			i++;
-		if (s[i] && s[i] != c)
+		if (s[i])
 		{
 			cont++;
 			while (s[i] && s[i] != c)
@@ -33,32 +33,14 @@ static int	ft_contword(char const *s, char c)
 	return (cont);
 }
 
-static int	ft_freeonnull(char **dest, int j)
+static char	**ft_destcpy(char const *s, char c, char **dest)
 {
-	if (dest[j] == NULL)
-	{
-		while (j >= 0)
-			free(dest[j--]);
-		free(dest);
-		return (0);
-	}
-	return (1);
-}
+	int	j;
+	int	i;
+	int	start;
 
-char	**ft_split(char const *s, char c)
-{
-	char	**dest;
-	int		start;
-	int		i;
-	int		j;
-
-	if (s == NULL)
-		return (NULL);
-	dest = (char **) malloc (sizeof(char *) * (ft_contword(s, c) + 1));
-	if (dest == NULL)
-		return (NULL);
-	i = 0;
 	j = 0;
+	i = 0;
 	while (s[i])
 	{
 		start = i;
@@ -67,8 +49,13 @@ char	**ft_split(char const *s, char c)
 		if (i != start)
 		{
 			dest[j] = ft_substr(s, start, (i - start));
-			if (ft_freeonnull(dest, j) == 0)
+			if (dest[j] == NULL)
+			{
+				while (j >= 0)
+					free(dest[j--]);
+				free(dest);
 				return (NULL);
+			}
 			j++;
 		}
 		if (s[i])
@@ -76,4 +63,16 @@ char	**ft_split(char const *s, char c)
 	}
 	dest[j] = NULL;
 	return (dest);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**dest;
+
+	if (!s)
+		return (NULL);
+	dest = (char **) malloc (sizeof(char *) * (ft_contword(s, c) + 1));
+	if (!dest)
+		return (NULL);
+	return (ft_destcpy(s, c, dest));
 }
