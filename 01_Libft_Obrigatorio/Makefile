@@ -27,7 +27,7 @@ clean:
 	rm -f $(OBJ)
 
 # remove os ojbetos e a biblioteca
-fclean:
+fclean: clean
 	rm -f $(NAME) $(OBJ)
 
 # recompila tudo de novo

@@ -33,6 +33,14 @@ static int	ft_contword(char const *s, char c)
 	return (cont);
 }
 
+static void	*ft_freealoc(int j, char **dest)
+{
+	while (j >= 0)
+		free(dest[j--]);
+	free(dest);
+	return (NULL);
+}
+
 static char	**ft_destcpy(char const *s, char c, char **dest)
 {
 	int	j;
@@ -50,12 +58,7 @@ static char	**ft_destcpy(char const *s, char c, char **dest)
 		{
 			dest[j] = ft_substr(s, start, (i - start));
 			if (dest[j] == NULL)
-			{
-				while (j >= 0)
-					free(dest[j--]);
-				free(dest);
-				return (NULL);
-			}
+				return (ft_freealoc(j, dest));
 			j++;
 		}
 		if (s[i])
