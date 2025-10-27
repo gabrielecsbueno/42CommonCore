@@ -2,7 +2,7 @@
 NAME = teste
 
 # Compilador e flags
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -lbsd
 
 # Arquivos fontes para compilar

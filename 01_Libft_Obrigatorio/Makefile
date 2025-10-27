@@ -2,7 +2,7 @@
 NAME = libft.a
 
 # Compilador e flags
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 # Arquivos fontes para compilar
@@ -19,7 +19,7 @@ $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
 # Compilar os .c em .o
-%.o: %.c libft.h
+%.o: %.c libft.h Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # remove os objetos
