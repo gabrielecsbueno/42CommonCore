@@ -6,56 +6,78 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 22:23:47 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/10/30 13:01:13 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/10/30 22:54:41 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
 
-static int	ft_print(const char	*text)
+static int	ft_putstr (const char	*str)
 {
 	int		i;
 
 	i = 0;
-	while (text[i])
+	while (str[i])
 	{
-		write (1, &text[i], 1);
+		write (1, &str[i], 1);
 		i++;
 	}
 	return (i);
 }
 
-static int	ft_type (char	*format)
+static	int	ft_putchar (char c)
 {
-	int	i;
-	int	type;
+	write (1, &c, 1);
+	return (1);
+}
 
-	i = 0;
-	while (format[i])
-	{
-		if (format[i] == '%' && format[i+1] == 'c')
-			return(type = 1);
-		else if (format[i] == '%' && format[i+1] == 's')
-			return(type = 2);
-		else if (format[i] == '%' && format[i+1] == 'p')
-			return(type = 3);
-		else if (format[i] == '%' && format[i+1] == 'd')
-			return(type = 4);
-		else if (format[i] == '%' && format[i+1] == 'i')
-			return(type = 5);
-		else if (format[i] == '%' && format[i+1] == 'u')
-			return(type = 6);
-		else if (format[i] == '%' && format[i+1] == 'x')
-			return(type = 7);
-		else if (format[i] == '%' && format[i+1] == 'X')
-			return(type = 8);
-		else if (format[i] == '%' && format[i+1] == '%')
-			return(type = 9);
-		else if (format[i] == '%')
-			return (-1);
-		i++;
-	}
-	return (0);
+static int	ft_type (char	format)
+{
+	if (format == 'c')
+		return(1);
+	else if (format == 's')
+		return(2);
+	else if (format =='p')
+		return(3);
+	else if (format =='d')
+		return(4);
+	else if (format == 'i')
+		return(5);
+	else if (format == 'u')
+		return(6);
+	else if (format == 'x')
+		return(7);
+	else if (format == 'X')
+		return(8);
+	else if (format == '%')
+		return(9);
+	return (-1);
+}
+
+static int	ft_printtype (char	print, va_list argument)
+{
+	int	size;
+
+	size = 0;
+	if (print == 'c')
+		size = ft_putchar(va_arg(argument, char));
+	else if (print == 's')
+		size = ft_putstr(va_arg(argument, char *));
+	else if (print =='p')
+		//ft_putptr
+	else if (print =='d')
+		//ft_putint
+	else if (print == 'i')
+		//ft_putint
+	else if (print == 'u')
+		//ft_putint
+	else if (print == 'x')
+		//ft_putint
+	else if (print == 'X')
+		//ft_putint
+	else if (print == '%')
+		//ft_putint
+	return (size);
 }
 
 int	ft_printf(const char *format, ...)
@@ -64,26 +86,35 @@ int	ft_printf(const char *format, ...)
 	size_t	i;
 	size_t	amount;
 	int		size;
-	int		type;
 
 	i = 0;
 	amount = 0;
 	while (format[i]) //verifica quantos argumentos tem na str
 	{
-		if(format[i] == '%' && (format[i+1] == 'c' || format[i+1] == 's' || format[i+1] == 'p' || format[i+1] == 'd' || format[i+1] == 'i' || format[i+1] == 'u' || format[i+1] == 'x' || format[i+1] == 'X' || format[i+1] == '%'))
-			amount++;
+		if (format[i] == '%')//se tiver o % obrigatoriamente tem que conter uma das regras
+		{
+			i++;
+			if (ft_type(format[i]) == -1)//se nao tiver nas regras ele sai
+				return (-1);
+			amount++;//se nao ele conta
+		}
 		i++;
 	}
 	if (amount == 0 && *format) //se nao tiver argumentos e tiver coisas para imprimir no forma
-		return (ft_print(format));
-	va_start (arguments, amount);
+		return (ft_putstr(format));
+	va_start (arguments, amount);//inicia os argumentos com a quantidade encontrada
 	i = 0;
-	while (format[i])
+	size = 0;
+	while (format[i])//inicia a impressao
 	{
-		if (format[i] != '%')
-			write(1, &format[i], 1);
-		else
-			ft_type(format[i]);
+		if (format[i] != '%')//se nao for a regra ele imprime
+			size += ft_putchar(format[i]);
+		else//se encontrar o % precisa saber qual regra é
+		{
+			i++;//passa para o priximo caractere, o que define a regra
+			size += ft_printtype(format[i], arguments);//soma o tamanho retornado
+		}
+		i++;
 	}
-	type = 0;
+	return (size);
 }
