@@ -6,30 +6,11 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 22:23:47 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/10/30 22:54:41 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/10/31 11:59:42 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
-
-static int	ft_putstr (const char	*str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i])
-	{
-		write (1, &str[i], 1);
-		i++;
-	}
-	return (i);
-}
-
-static	int	ft_putchar (char c)
-{
-	write (1, &c, 1);
-	return (1);
-}
 
 static int	ft_type (char	format)
 {
@@ -56,28 +37,30 @@ static int	ft_type (char	format)
 
 static int	ft_printtype (char	print, va_list argument)
 {
-	int	size;
+	int	n;
 
-	size = 0;
+	n = 0;
 	if (print == 'c')
-		size = ft_putchar(va_arg(argument, char));
+		n = ft_putchar(va_arg(argument, char));
 	else if (print == 's')
-		size = ft_putstr(va_arg(argument, char *));
-	else if (print =='p')
-		//ft_putptr
-	else if (print =='d')
+		n = ft_putstr(va_arg(argument, char *));
+	//else if (print =='p')
+		//ft_putponteiro
+	else if (print =='d' || print == 'i' || print == 'u')
+	{
+		n = va_arg(argument, int);
+		if (print == 'u' && n < 0)
+			n = ft_putnbr(n * -1);
+		else
+			n = ft_putnbr(n);
+	}
+	//else if (print == 'x')
 		//ft_putint
-	else if (print == 'i')
+	//else if (print == 'X')
 		//ft_putint
-	else if (print == 'u')
-		//ft_putint
-	else if (print == 'x')
-		//ft_putint
-	else if (print == 'X')
-		//ft_putint
-	else if (print == '%')
-		//ft_putint
-	return (size);
+	//else if (print == '%')
+		n = ft_putchar('%');
+	return (n);
 }
 
 int	ft_printf(const char *format, ...)
@@ -89,17 +72,14 @@ int	ft_printf(const char *format, ...)
 
 	i = 0;
 	amount = 0;
-	while (format[i]) //verifica quantos argumentos tem na str
+	while (format[i]) //verifica quantos %
 	{
-		if (format[i] == '%')//se tiver o % obrigatoriamente tem que conter uma das regras
-		{
+		if (format[i++] == '%')//se tiver o % ele conta e pula o proximo, poque pode ter o %%
+			amount++;
+		else
 			i++;
-			if (ft_type(format[i]) == -1)//se nao tiver nas regras ele sai
-				return (-1);
-			amount++;//se nao ele conta
-		}
-		i++;
-	}
+	}//aqui ele contou quantos % idependente de quantos estao na regra ou nao
+	//mas se tiver no final (hola %)? sim ele contou
 	if (amount == 0 && *format) //se nao tiver argumentos e tiver coisas para imprimir no forma
 		return (ft_putstr(format));
 	va_start (arguments, amount);//inicia os argumentos com a quantidade encontrada
