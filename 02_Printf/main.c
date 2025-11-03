@@ -15,6 +15,22 @@ int	main(void)
 
 	int	ret_original;
 	int	ret_criada;
+
+	printf("---------------------------------- Teste apenas um texto  --------------------------------------\n\n");
+
+	printf("- PRINTF\n\n");
+	ret_original = printf("Esse aqui é apenas um texto\n\n");
+	printf("Retorno da original = %d\n\n", ret_original);
+
+	printf("- FT_PRINTF\n\n");
+	ret_criada = ft_printf("Esse aqui é apenas um texto\n\n");
+	printf("Retorno da criada   = %d\n\n", ret_criada);
+
+	if (ret_original == ret_criada)
+		printf(GREEN "TESTE = OK :)\n\n" RESET);
+	else
+		printf(RED "TESTE = KO :(\n\n" RESET);
+
 	printf("--------------------------------------- Teste do %%c  -------------------------------------------\n\n");
 
 	char	c = 'a';
@@ -24,7 +40,7 @@ int	main(void)
 	printf("Retorno da original = %d\n\n", ret_original);
 
 	printf("- FT_PRINTF\n\n");
-	ret_criada = printf("Caractere = %c\n", c);
+	ret_criada = ft_printf("Caractere = %c\n", c);
 	printf("Retorno da criada   = %d\n\n", ret_criada);
 
 	if (ret_original == ret_criada)
@@ -41,7 +57,7 @@ int	main(void)
 	printf("Retorno da original = %d\n\n", ret_original);
 
 	printf("- FT_PRINTF\n\n");
-	ret_criada = printf("String = %s\n", str);
+	ret_criada = ft_printf("String = %s\n", str);
 	printf("Retorno da criada   = %d\n\n", ret_criada);
 
 	if (ret_original == ret_criada)
@@ -69,14 +85,14 @@ int	main(void)
 
 	printf("--------------------------------------- Teste do %%d  -------------------------------------------\n\n");
 
-	int	n = 10;
+	int	n = -10;
 
 	printf("- PRINTF\n\n");
 	ret_original = printf("Decimal = %d\n", n);
 	printf("Retorno da original = %d\n\n", ret_original);
 
 	printf("- FT_PRINTF\n\n");
-	ret_criada = printf("Decimal = %d\n", n);
+	ret_criada = ft_printf("Decimal = %d\n", n);
 	printf("Retorno da criada   = %d\n\n", ret_criada);
 
 	if (ret_original == ret_criada)
@@ -93,7 +109,7 @@ int	main(void)
 	printf("Retorno da original = %d\n\n", ret_original);
 
 	printf("- FT_PRINTF\n\n");
-	ret_criada = printf("Inteiro em base 10 = %i\n", i);
+	ret_criada = ft_printf("Inteiro em base 10 = %i\n", i);
 	printf("Retorno da criada   = %d\n\n", ret_criada);
 
 	if (ret_original == ret_criada)
@@ -110,7 +126,7 @@ int	main(void)
 	printf("Retorno da original = %d\n\n", ret_original);
 
 	printf("- FT_PRINTF\n\n");
-	ret_criada = printf("Decimal sem sinal = %u\n", u);
+	ret_criada = ft_printf("Decimal sem sinal = %u\n", u);
 	printf("Retorno da criada   = %d\n\n", ret_criada);
 
 	if (ret_original == ret_criada)
