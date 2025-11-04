@@ -21,6 +21,6 @@ int		ft_putstr (const char	*str);//retona o numero de bytes impressos
 int		ft_putchar (char c);//retorna o numero de bytes impressos
 int		ft_putnbr (int n);//retorna o numero de bytes impressos
 char	*ft_itoa(int n);//para retornar os numeros em str
-int		ft_puthex(unsigned long n);
+int		ft_puthex(unsigned long n, int size);
 
 #endif

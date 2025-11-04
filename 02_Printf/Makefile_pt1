@@ -17,11 +17,12 @@ OBJ = $(SRCS:.c=.o)
 # Regra principal
 all: $(NAME)
 
-# Regra principal - cria biblioteca
+# Regra principal
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 	rm -f $(OBJ)
 	./teste
+	rm teste
 
 # remove os ojbetos e a biblioteca
 fclean:

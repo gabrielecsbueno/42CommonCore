@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 09:46:57 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/11/04 00:21:30 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/11/04 09:46:01 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	ft_putstr(const char	*str)
 		write (1, &str[i], 1);
 		i++;
 	}
+	if(!str)
+		return(-1);
 	return (i);
 }
 
@@ -39,19 +41,37 @@ int	ft_putnbr(int n)
 	return (ft_putstr(str));
 }
 
-int	ft_puthex(unsigned long n)//preciso que essa funcao nao seja recursiva, porque tem que devolver um size
+/*
+int	ft_puthex(unsigned long n)
+{
+	int	size;
+	
+	size = ft_putstr("0x");
+	while (n > 0)
+	{
+		if ((n % 16) >= 10)
+			size = size + ft_putchar((n % 16) + 87);
+		else
+			size = size + ft_putchar('0' + (n % 16));
+		n = n / 16;
+	}
+	return (size);
+}
+*/
+
+int	ft_puthex(unsigned long n, int size)//tem que devolver um size
 {
 	if (n >= 16)
 	{
-		ft_puthex (n / 16);
-		ft_puthex (n % 16);
+		size = ft_puthex (n / 16, size);
+		size = ft_puthex (n % 16, size);
 	}
 	else
 	{
 		if (n >= 10)
-			ft_putchar(n + 87);
+			size = size + ft_putchar(n + 87);
 		else
-			ft_putchar('0' + n);
+			size = size + ft_putchar('0' + n);
 	}
-	return (0);
+	return (size);
 }

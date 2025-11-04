@@ -12,6 +12,40 @@
 
 #include "includes.h"
 
+static int	ft_type(char format);
+static int	ft_printtype(char print, va_list argument);
+
+int	ft_printf(const char *format, ...)
+{
+	va_list	arguments;
+	size_t	i;
+	int		size;
+
+	if(!format)
+		return(-1);
+	va_start (arguments, format);//inicia os argumentos com a quantidade encontrada
+	i = 0;
+	size = 0;
+	while (format[i])//inicia a impressao
+	{
+		if (format[i] == '%' && ft_type(format[i + 1]) == 0)
+		{
+			va_end(arguments);
+			return(-1);
+		}
+		if (format[i] != '%')//se nao for a regra ele imprime
+			size += ft_putchar(format[i]);
+		else//se encontrar o % precisa saber qual regra é
+		{
+			i++;//passa para o priximo caractere, o que define a regra
+			size += ft_printtype(format[i], arguments);//soma o tamanho retornado
+		}
+		i++;
+	}
+	va_end(arguments);
+	return (size);
+}
+
 static int	ft_type(char format)
 {
 	if (format == 'c' || format == 's' || format == 'p' || format == 'd'
@@ -33,8 +67,8 @@ static int	ft_printtype(char print, va_list argument)
 	else if (print == 's')
 		n = ft_putstr(va_arg(argument, char *));
 	else if (print =='p')
-		n = ft_puthex((unsigned long)va_arg(argument, void *));
-	else if (print == 'd' || print == 'i' || print == 'u')
+		n = ft_putstr("0x") + ft_puthex((unsigned long)va_arg(argument, void *), n);
+	else if (print == 'd' || print == 'i' || print == 'u')//preciso corrigir o u
 	{
 		n = va_arg(argument, int);
 		if (print == 'u' && n < 0)
@@ -42,40 +76,11 @@ static int	ft_printtype(char print, va_list argument)
 		else
 			n = ft_putnbr(n);
 	}
-	//else if (print == 'x')
-		//ft_putint
-	//else if (print == 'X')
-		//ft_putint
+	else if (print == 'x')
+		n = ft_puthex((unsigned long)va_arg(argument, int), n);
+	else if (print == 'X')
+		n = ft_puthex((unsigned long)va_arg(argument, int), n);
 	else if (print == '%')
 		n = ft_putchar('%');
 	return (n);
-}
-
-int	ft_printf(const char *format, ...)
-{
-	va_list	arguments;
-	size_t	i;
-	int		size;
-
-	va_start (arguments, format);//inicia os argumentos com a quantidade encontrada
-	i = 0;
-	size = 0;
-	while (format[i])//inicia a impressao
-	{
-		if (format[i] == '%' && ft_type (format[i + 1]) == 0)
-		{
-			va_end(arguments);
-			return(-1);
-		}
-		if (format[i] != '%')//se nao for a regra ele imprime
-			size += ft_putchar(format[i]);
-		else//se encontrar o % precisa saber qual regra é
-		{
-			i++;//passa para o priximo caractere, o que define a regra
-			size += ft_printtype(format[i], arguments);//soma o tamanho retornado
-		}
-		i++;
-	}
-	va_end(arguments);
-	return (size);
 }
