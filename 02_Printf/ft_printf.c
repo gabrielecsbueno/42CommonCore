@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 22:23:47 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/11/04 00:04:30 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/11/04 17:01:31 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ int	ft_printf(const char *format, ...)
 			va_end(arguments);
 			return(-1);
 		}
-		if (format[i] != '%')//se nao for a regra ele imprime
+		if (format[i] != '%')
 			size += ft_putchar(format[i]);
-		else//se encontrar o % precisa saber qual regra é
+		else
 		{
-			i++;//passa para o priximo caractere, o que define a regra
-			size += ft_printtype(format[i], arguments);//soma o tamanho retornado
+			i++;
+			size += ft_printtype(format[i], arguments);
 		}
 		i++;
 	}
@@ -67,19 +67,17 @@ static int	ft_printtype(char print, va_list argument)
 	else if (print == 's')
 		n = ft_putstr(va_arg(argument, char *));
 	else if (print =='p')
-		n = ft_putstr("0x") + ft_puthex((unsigned long)va_arg(argument, void *), n);
+		n = ft_putstr("0x") + ft_puthex((unsigned long)va_arg(argument, void *), print);
 	else if (print == 'd' || print == 'i' || print == 'u')//preciso corrigir o u
 	{
 		n = va_arg(argument, int);
 		if (print == 'u' && n < 0)
-			n = ft_putnbr(n * -1);
+			n = ft_putnbr(n);
 		else
 			n = ft_putnbr(n);
 	}
-	else if (print == 'x')
-		n = ft_puthex((unsigned long)va_arg(argument, int), n);
-	else if (print == 'X')
-		n = ft_puthex((unsigned long)va_arg(argument, int), n);
+	else if (print == 'x' || print == 'X')
+		n = ft_puthex((unsigned long)va_arg(argument, int), print);
 	else if (print == '%')
 		n = ft_putchar('%');
 	return (n);
