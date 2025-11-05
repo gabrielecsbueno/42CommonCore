@@ -6,7 +6,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 # Arquivos fontes para compilar
-SRCS = main.c ft_printf.c ft_print.c ft_itoa.c
+SRCS = main.c ft_printf.c ft_print.c
 
 # Arquivos de cabecalho
 HEADER = includes.h

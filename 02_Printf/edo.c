@@ -25,77 +25,77 @@ int main(void)
 
 	printf("--- STARTING EDGE CASE TESTS ---\n\n");
 
-	printf("--- Test %d: Percent and space ---\n", test_num);
+	printf("--- Test %d: Percent and space ---\n", test_num);// 01
 	res1 = printf("Hola % t");
 	printf("\n");
 	res2 = ft_printf("Hola % t");
 	printf("\n");
 	check_test(test_num++, res1, res2);
 
-	printf("--- Test %d: Invalid specifier %%z ---\n", test_num);
+	printf("--- Test %d: Invalid specifier %%z ---\n", test_num);// 02 //AQUIIIIIIIIIIIIIIIIIIIIII
 	res1 = printf("Hola %) world");
 	printf("\n");
 	res2 = ft_printf("Hola %) world");
 	printf("\n");
 	check_test(test_num++, res1, res2);
 
-	printf("--- Test %d: String ends with %% ---\n", test_num);
+	printf("--- Test %d: String ends with %% ---\n", test_num);// 03
 	res1 = printf("Hello %");
 	printf("\n");
 	res2 = ft_printf("Hello %");
 	printf("\n");
 	check_test(test_num++, res1, res2);
 
-	printf("--- Test %d: Just %% ---\n", test_num);
+	printf("--- Test %d: Just %% ---\n", test_num);// 04
 	res1 = printf("%");
 	printf("\n");
 	res2 = ft_printf("%");
 	printf("\n");
 	check_test(test_num++, res1, res2);
 
-	printf("--- Test %d: NULL format string ---\n", test_num);
+	printf("--- Test %d: NULL format string ---\n", test_num);// 05
 	printf("(Skipping real printf(NULL) - causes SEGFAULT)\n");
 	res1 = -1;
 	res2 = ft_printf(NULL);
 	printf("\n");
 	check_test(test_num++, res1, res2);
 
-	printf("--- Test %d: Complex percent combinations ---\n", test_num);
+	printf("--- Test %d: Complex percent combinations ---\n", test_num);// 06
 	res1 = printf("A %%d B %%%d C %d%% D", 123, 456);
 	printf("\n");
 	res2 = ft_printf("A %%d B %%%d C %d%% D", 123, 456);
 	printf("\n");
 	check_test(test_num++, res1, res2);
 
-	printf("--- Test %d: Double percent ---\n", test_num);
+	printf("--- Test %d: Double percent ---\n", test_num);// 07
 	res1 = printf("Testing 100%% complete %%");
 	printf("\n");
 	res2 = ft_printf("Testing 100%% complete %%");
 	printf("\n");
 	check_test(test_num++, res1, res2);
 
-	printf("--- Test %d: Extra arguments ---\n", test_num);
+	printf("--- Test %d: Extra arguments ---\n", test_num);// 08
 	res1 = printf("Hello", 123, "world", (void *)0);
 	printf("\n");
 	res2 = ft_printf("Hello", 123, "world", (void *)0);
 	printf("\n");
 	check_test(test_num++, res1, res2);
 
-	printf("--- Test %d: NULL string (%%s) ---\n", test_num);
+	printf("--- Test %d: NULL string (%%s) ---\n", test_num);// 09
 	res1 = printf("String: %s (end)", (char *)NULL);
 	printf("\n");
 	res2 = ft_printf("String: %s (end)", (char *)NULL);
 	printf("\n");
 	check_test(test_num++, res1, res2);
 
-	printf("--- Test %d: NULL pointer (%%p) ---\n", test_num);
+	printf("--- Test %d: NULL pointer (%%p) ---\n", test_num);// 10
 	res1 = printf("Pointer: %p (end)", (void *)NULL);
 	printf("\n");
 	res2 = ft_printf("Pointer: %p (end)", (void *)NULL);
 	printf("\n");
 	check_test(test_num++, res1, res2);
 
-	printf("--- Test %d: Printing zero (d, u, x, X) ---\n", test_num);
+	printf("--- Test %d: Printing zero (d, u, x, X) ---\n", test_num);// 11
 	res1 = printf("Zeroes: %d %u %x %X", 0, 0, 0, 0);
 	printf("\n");
 	res2 = ft_printf("Zeroes: %d %u %x %X", 0, 0, 0, 0);

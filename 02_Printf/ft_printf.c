@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 22:23:47 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/11/04 17:01:31 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/11/05 14:21:40 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,22 @@ int	ft_printf(const char *format, ...)
 	size_t	i;
 	int		size;
 
-	if(!format)
-		return(-1);
-	va_start (arguments, format);//inicia os argumentos com a quantidade encontrada
+	if (!format)
+		return (-1);
+	va_start (arguments, format);
 	i = 0;
 	size = 0;
-	while (format[i])//inicia a impressao
+	while (format[i])
 	{
 		if (format[i] == '%' && ft_type(format[i + 1]) == 0)
 		{
 			va_end(arguments);
-			return(-1);
+			return (-1);
 		}
 		if (format[i] != '%')
 			size += ft_putchar(format[i]);
 		else
-		{
-			i++;
-			size += ft_printtype(format[i], arguments);
-		}
+			size += ft_printtype(format[++i], arguments);
 		i++;
 	}
 	va_end(arguments);
@@ -66,18 +63,14 @@ static int	ft_printtype(char print, va_list argument)
 		n = ft_putchar((char)va_arg(argument, int));
 	else if (print == 's')
 		n = ft_putstr(va_arg(argument, char *));
-	else if (print =='p')
-		n = ft_putstr("0x") + ft_puthex((unsigned long)va_arg(argument, void *), print);
-	else if (print == 'd' || print == 'i' || print == 'u')//preciso corrigir o u
-	{
-		n = va_arg(argument, int);
-		if (print == 'u' && n < 0)
-			n = ft_putnbr(n);
-		else
-			n = ft_putnbr(n);
-	}
+	else if (print == 'd' || print == 'i')
+		n = ft_putnbr(va_arg(argument, int));
+	else if (print == 'u')
+		n = ft_putunsigned(va_arg(argument, unsigned int));
+	else if (print == 'p')
+		n = ft_puthexa((unsigned long)va_arg(argument, void *), print);
 	else if (print == 'x' || print == 'X')
-		n = ft_puthex((unsigned long)va_arg(argument, int), print);
+		n = ft_puthexa(va_arg(argument, int), print);
 	else if (print == '%')
 		n = ft_putchar('%');
 	return (n);

@@ -80,37 +80,6 @@ int	main(void)
 	else
 		printf(RED "TESTE = KO :(\n\n" RESET);
 
-	printf("--------------------------------------- Teste do %%p  -------------------------------------------\n\n");
-
-	char	*ptr_c = "Buenos dias meu povo bonito";
-	int		ptr_i[] = {10, 20, 30, 40, 50, 60, 0};
-
-	printf("- PRINTF\n\n");
-	ret_original = printf("%p\n", ptr_i);
-	printf("Retorno da original ponteiro int  = %d\n\n", ret_original);
-
-	printf("- FT_PRINTF\n\n");
-	ret_criada = ft_printf("%p\n", ptr_i);
-	printf("Retorno da original ponteiro int  = %d\n\n", ret_criada);
-	
-	if (ret_original == ret_criada)
-		printf(GREEN "TESTE = OK :)\n\n" RESET);
-	else
-		printf(RED "TESTE = KO :(\n\n" RESET);
-	
-	printf("- PRINTF\n\n");
-	ret_original = printf("%p\n", ptr_c);
-	printf("Retorno da original ponteiro char = %d\n\n", ret_original);
-	
-	printf("- FT_PRINTF\n\n");
-	ret_criada = ft_printf("%p\n", ptr_c);
-	printf("Retorno da original ponteiro char = %d\n\n", ret_criada);
-
-	if (ret_original == ret_criada)
-		printf(GREEN "TESTE = OK :)\n\n" RESET);
-	else
-		printf(RED "TESTE = KO :(\n\n" RESET);
-
 	printf("--------------------------------------- Teste do %%d  -------------------------------------------\n\n");
 
 	int	n = -10;
@@ -161,7 +130,38 @@ int	main(void)
 		printf(GREEN "TESTE = OK :)\n\n" RESET);
 	else
 		printf(RED "TESTE = KO :(\n\n" RESET);
-		
+
+	printf("--------------------------------------- Teste do %%p  -------------------------------------------\n\n");
+
+	char	*ptr_c = "Buenos dias meu povo bonito";
+	int		ptr_i[] = {10, 20, 30, 40, 50, 60, 0};
+
+	printf("- PRINTF\n\n");
+	ret_original = printf("%p\n", ptr_i);
+	printf("Retorno da original ponteiro int  = %d\n\n", ret_original);
+
+	printf("- FT_PRINTF\n\n");
+	ret_criada = ft_printf("%p\n", ptr_i);
+	printf("Retorno da criada ponteiro int   = %d\n\n", ret_criada);
+
+	if (ret_original == ret_criada)
+		printf(GREEN "TESTE = OK :)\n\n" RESET);
+	else
+		printf(RED "TESTE = KO :(\n\n" RESET);
+
+	printf("- PRINTF\n\n");
+	ret_original = printf("%p\n", ptr_c);
+	printf("Retorno da original ponteiro char = %d\n\n", ret_original);
+
+	printf("- FT_PRINTF\n\n");
+	ret_criada = ft_printf("%p\n", ptr_c);
+	printf("Retorno da criada ponteiro char  = %d\n\n", ret_criada);
+
+	if (ret_original == ret_criada)
+		printf(GREEN "TESTE = OK :)\n\n" RESET);
+	else
+		printf(RED "TESTE = KO :(\n\n" RESET);
+
 	printf("--------------------------------------- Teste do %%x  -------------------------------------------\n\n");
 
 	int	x1 = 605;
@@ -169,16 +169,16 @@ int	main(void)
 	printf("- PRINTF\n\n");
 	ret_original = printf("Hexadecimal de %d  = %x\n", x1, x1);
 	printf("Retorno da original = %d\n\n", ret_original);
-	
+
 	printf("- FT_PRINTF\n\n");
 	ret_criada = ft_printf("Hexadecimal de %d  = %x\n", x1, x1);
-	printf("Retorno da original = %d\n\n", ret_criada);
+	printf("Retorno da criada  = %d\n\n", ret_criada);
 
 	if (ret_original == ret_criada)
 		printf(GREEN "TESTE = OK :)\n\n" RESET);
 	else
 		printf(RED "TESTE = KO :(\n\n" RESET);
-	
+
 	printf("--------------------------------------- Teste do %%X  -------------------------------------------\n\n");
 
 	int	x2 = 605;
@@ -186,16 +186,154 @@ int	main(void)
 	printf("- PRINTF\n\n");
 	ret_original = printf("Hexadecimal de %d  = %X\n", x2, x2);
 	printf("Retorno da original = %d\n\n", ret_original);
-	
+
 	printf("- FT_PRINTF\n\n");
 	ret_criada = ft_printf("Hexadecimal de %d  = %X\n", x1, x1);
-	printf("Retorno da original = %d\n\n", ret_criada);
+	printf("Retorno da criada  = %d\n\n", ret_criada);
 
 	if (ret_original == ret_criada)
 		printf(GREEN "TESTE = OK :)\n\n" RESET);
 	else
 		printf(RED "TESTE = KO :(\n\n" RESET);
-	
+
+	printf("------------------------------------------------------------------------------------------------\n\n");
+	printf("----------------------------------------- TESTE DO EDO -----------------------------------------\n\n");
+
+	printf("------------------------------------ Teste do %% com espaco  -----------------------------------\n\n");
+
+	printf("- PRINTF\n\n");
+	ret_original = printf("Hola % t");
+	printf("\n\nRetorno da original = %d\n\n", ret_original);
+
+	printf("- FT_PRINTF\n\n");
+	ret_criada = ft_printf("Hola % t");
+	printf("\n\nRetorno da criada  = %d\n\n", ret_criada);
+
+	if (ret_original == ret_criada)
+		printf(GREEN "TESTE = OK :)\n\n" RESET);
+	else
+		printf(RED "TESTE = KO :(\n\n" RESET);
+
+	printf("------------------------------------ Teste do %% no final  -------------------------------------\n\n");
+
+	printf("- PRINTF\n\n");
+	ret_original = printf("Hola %");
+	printf("\n\nRetorno da original = %d\n\n", ret_original);
+
+	printf("- FT_PRINTF\n\n");
+	ret_criada = ft_printf("Hola %");
+	printf("\n\nRetorno da criada  = %d\n\n", ret_criada);
+
+	if (ret_original == ret_criada)
+		printf(GREEN "TESTE = OK :)\n\n" RESET);
+	else
+		printf(RED "TESTE = KO :(\n\n" RESET);
+
+	printf("------------------------------------ Teste com somente 1 %% ------------------------------------\n\n");
+
+	printf("- PRINTF\n\n");
+	ret_original = printf("%");
+	printf("\n\nRetorno da original = %d\n\n", ret_original);
+
+	printf("- FT_PRINTF\n\n");
+	ret_criada = ft_printf("%");
+	printf("\n\nRetorno da criada  = %d\n\n", ret_criada);
+
+	if (ret_original == ret_criada)
+		printf(GREEN "TESTE = OK :)\n\n" RESET);
+	else
+		printf(RED "TESTE = KO :(\n\n" RESET);
+
+	printf("------------------------------ Teste passando NULL como parametro ------------------------------\n\n");
+
+	printf("(Skipping real printf(NULL) - causes SEGFAULT)");
+	ret_original = -1;
+	printf("\n\nRetorno da original = %d\n\n", ret_original);
+
+	printf("- FT_PRINTF\n\n");
+	ret_criada = ft_printf(NULL);
+	printf("\n\nRetorno da criada = %d\n\n", ret_criada);
+
+	if (ret_original == ret_criada)
+		printf(GREEN "TESTE = OK :)\n\n" RESET);
+	else
+		printf(RED "TESTE = KO :(\n\n" RESET);
+
+	printf("------------------------------ Teste %% de complexas combinacoes -------------------------------\n\n");
+
+	printf("- PRINTF\n\n");
+	ret_original = printf("A %%d B %%%d C %d%% D", 123, 456);
+	printf("\n\nRetorno da original = %d\n\n", ret_original);
+
+	printf("- FT_PRINTF\n\n");
+	ret_criada = ft_printf("A %%d B %%%d C %d%% D", 123, 456);
+	printf("\n\nRetorno da criada  = %d\n\n", ret_criada);
+
+	if (ret_original == ret_criada)
+		printf(GREEN "TESTE = OK :)\n\n" RESET);
+	else
+		printf(RED "TESTE = KO :(\n\n" RESET);
+
+	printf("--------------------------------- Teste com argumentos extras ----------------------------------\n\n");
+
+	printf("- PRINTF\n\n");
+	ret_original = printf("Hello", 123, "world", (void *)0);
+	printf("\n\nRetorno da original = %d\n\n", ret_original);
+
+	printf("- FT_PRINTF\n\n");
+	ret_criada = ft_printf("Hello", 123, "world", (void *)0);
+	printf("\n\nRetorno da criada  = %d\n\n", ret_criada);
+
+	if (ret_original == ret_criada)
+		printf(GREEN "TESTE = OK :)\n\n" RESET);
+	else
+		printf(RED "TESTE = KO :(\n\n" RESET);
+
+	printf("--------------------------------- Teste com string NULL (%%s) ----------------------------------\n\n");
+
+	printf("- PRINTF\n\n");
+	ret_original = printf("String: %s (end)", (char *)NULL);
+	printf("\n\nRetorno da original = %d\n\n", ret_original);
+
+	printf("- FT_PRINTF\n\n");
+	ret_criada = ft_printf("String: %s (end)", (char *)NULL);
+	printf("\n\nRetorno da criada  = %d\n\n", ret_criada);
+
+	if (ret_original == ret_criada)
+		printf(GREEN "TESTE = OK :)\n\n" RESET);
+	else
+		printf(RED "TESTE = KO :(\n\n" RESET);
+
+	printf("-------------------------------- Teste com ponteiro NULL (%%p) ---------------------------------\n\n");
+
+	printf("- PRINTF\n\n");
+	ret_original = printf("Pointer: %p (end)", (void *)NULL);
+	printf("\n\nRetorno da original = %d\n\n", ret_original);
+
+	printf("- FT_PRINTF\n\n");
+	ret_criada = ft_printf("Pointer: %p (end)", (void *)NULL);
+	printf("\n\nRetorno da criada  = %d\n\n", ret_criada);
+
+	if (ret_original == ret_criada)
+		printf(GREEN "TESTE = OK :)\n\n" RESET);
+	else
+		printf(RED "TESTE = KO :(\n\n" RESET);
+
+	printf("----------------------------- Teste printando zeros (d, u, x, X) -------------------------------\n\n");
+
+	printf("- PRINTF\n\n");
+	ret_original = printf("Zeroes: %d %u %x %X", 0, 0, 0, 0);
+	printf("\n\nRetorno da original = %d\n\n", ret_original);
+
+	printf("- FT_PRINTF\n\n");
+	ret_criada = ft_printf("Zeroes: %d %u %x %X", 0, 0, 0, 0);
+	printf("\n\nRetorno da criada  = %d\n\n", ret_criada);
+
+	if (ret_original == ret_criada)
+		printf(GREEN "TESTE = OK :)\n\n" RESET);
+	else
+		printf(RED "TESTE = KO :(\n\n" RESET);
+
 	printf("---------------------------------------- FIM DOS TESTES ----------------------------------------\n\n");
 
 	return (0);
