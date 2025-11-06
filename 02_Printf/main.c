@@ -82,7 +82,7 @@ int	main(void)
 
 	printf("--------------------------------------- Teste do %%d  -------------------------------------------\n\n");
 
-	int	n = -10;
+	int	n = -2147483648;
 
 	printf("- PRINTF\n\n");
 	ret_original = printf("Decimal = %d\n", n);
@@ -246,7 +246,7 @@ int	main(void)
 
 	printf("------------------------------ Teste passando NULL como parametro ------------------------------\n\n");
 
-	printf("(Skipping real printf(NULL) - causes SEGFAULT)");
+	printf("(Ignora o printf(NULL) real - causa SEGFAULT)");
 	ret_original = -1;
 	printf("\n\nRetorno da original = %d\n\n", ret_original);
 

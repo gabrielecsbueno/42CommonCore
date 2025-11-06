@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 22:23:47 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/11/05 14:21:40 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/11/06 10:54:19 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ int	ft_printf(const char *format, ...)
 	size = 0;
 	while (format[i])
 	{
-		if (format[i] == '%' && ft_type(format[i + 1]) == 0)
+		if (format[i] != '%')
+			size += ft_putchar(format[i]);
+		else if (format[i] == '%' && ft_type(format[i + 1]) == 0)
 		{
 			va_end(arguments);
 			return (-1);
 		}
-		if (format[i] != '%')
-			size += ft_putchar(format[i]);
 		else
 			size += ft_printtype(format[++i], arguments);
 		i++;
