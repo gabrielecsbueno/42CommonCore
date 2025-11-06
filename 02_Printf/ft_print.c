@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 09:46:57 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/11/06 11:38:02 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/11/06 14:11:55 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,10 @@ int	ft_puthexa(unsigned long n, char type)
 		if (!n)
 			return (ft_putstr("(nil)"));
 		size += ft_putstr("0x");
-		size += ft_puthexa (n, 'x');
+		type = 'x';
 	}
-	else if (n >= 16)
-	{
-		size += ft_puthexa (n / 16, type);
-		size += ft_puthexa (n % 16, type);
-	}
+	if (n >= 16)
+		size += ft_puthexa (n / 16, type) + ft_puthexa (n % 16, type);
 	else
 	{
 		if (n >= 10)

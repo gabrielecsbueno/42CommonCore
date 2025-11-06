@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 22:23:47 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/11/06 10:54:19 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/11/06 13:16:04 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	ft_printtype(char print, va_list argument)
 	else if (print == 'p')
 		n = ft_puthexa((unsigned long)va_arg(argument, void *), print);
 	else if (print == 'x' || print == 'X')
-		n = ft_puthexa(va_arg(argument, int), print);
+		n = ft_puthexa((unsigned int)va_arg(argument, int), print);
 	else if (print == '%')
 		n = ft_putchar('%');
 	return (n);

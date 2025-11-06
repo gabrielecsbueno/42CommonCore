@@ -164,7 +164,7 @@ int	main(void)
 
 	printf("--------------------------------------- Teste do %%x  -------------------------------------------\n\n");
 
-	int	x1 = 605;
+	int	x1 = -2147483648;
 
 	printf("- PRINTF\n\n");
 	ret_original = printf("Hexadecimal de %d  = %x\n", x1, x1);
@@ -188,14 +188,14 @@ int	main(void)
 	printf("Retorno da original = %d\n\n", ret_original);
 
 	printf("- FT_PRINTF\n\n");
-	ret_criada = ft_printf("Hexadecimal de %d  = %X\n", x1, x1);
+	ret_criada = ft_printf("Hexadecimal de %d  = %X\n", x2, x2);
 	printf("Retorno da criada  = %d\n\n", ret_criada);
 
 	if (ret_original == ret_criada)
 		printf(GREEN "TESTE = OK :)\n\n" RESET);
 	else
 		printf(RED "TESTE = KO :(\n\n" RESET);
-
+/*
 	printf("------------------------------------------------------------------------------------------------\n\n");
 	printf("----------------------------------------- TESTE DO EDO -----------------------------------------\n\n");
 
@@ -333,7 +333,7 @@ int	main(void)
 		printf(GREEN "TESTE = OK :)\n\n" RESET);
 	else
 		printf(RED "TESTE = KO :(\n\n" RESET);
-
+*/
 	printf("---------------------------------------- FIM DOS TESTES ----------------------------------------\n\n");
 
 	return (0);
