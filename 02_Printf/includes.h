@@ -12,14 +12,14 @@
 
 #ifndef INCLUDES_H
 # define INCLUDES_H
-# include <unistd.h> //write
-# include <stdarg.h> //va_start ...
+# include <unistd.h>
+# include <stdarg.h>
 
 int		ft_printf(const char *format, ...);
 int		ft_putstr(const char *str);
 int		ft_putchar(char c);
-int		ft_putnbr(int n); //imprime int - de -2147483648 a 2147483647
-int		ft_putunsigned(unsigned int n);//imprime unsigned - de 0 a 4.294.967.295
+int		ft_putnbr(int n);
+int		ft_putunsigned(unsigned int n);
 int		ft_puthexa(unsigned long n, char type);
 
 #endif
