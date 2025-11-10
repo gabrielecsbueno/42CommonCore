@@ -1,21 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/27 09:21:30 by egalindo          #+#    #+#             */
-/*   Updated: 2025/09/27 17:54:37 by egalindo         ###   ########.fr       */
+/*   Created: 2025/11/10 15:27:32 by gabde-so          #+#    #+#             */
+/*   Updated: 2025/11/10 15:27:39 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_isdigit(int c)
-{
-	if (c > 47 && c < 58)
-		return (c);
-	else
-		return (0);
-}
+#include "get_next_line.h"

@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/11 11:46:26 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/11 14:49:56 by egalindo         ###   ########.fr       */
+/*   Created: 2025/11/10 15:24:02 by gabde-so          #+#    #+#             */
+/*   Updated: 2025/11/10 15:26:38 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# include <stdlib.h> //malloc e free
+# include <unistd.h> //read
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
-{
-	if (!lst)
-		return ;
-	while (lst != NULL)
-	{
-		f(lst->content);
-		lst = lst->next;
-	}
-}
+char	*get_next_line(int fd);
+
+#endif

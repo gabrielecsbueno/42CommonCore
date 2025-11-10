@@ -1,28 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/30 16:22:49 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/07 10:04:58 by egalindo         ###   ########.fr       */
+/*   Created: 2025/11/10 15:26:16 by gabde-so          #+#    #+#             */
+/*   Updated: 2025/11/10 15:27:42 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
-{
-	char	*string;
-
-	string = (char *)s;
-	while (n > 0)
-	{
-		if (*string == (char) c)
-			return (string);
-		string++;
-		n--;
-	}
-	return (0);
-}
+char	*get_next_line(int fd);
