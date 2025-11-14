@@ -6,46 +6,41 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:26:16 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/11/13 13:02:03 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/11/14 17:11:47 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-// Lê até os bytes do arquivo, com o tamanho definido pelo BUFFER, ate encontrar um pula linha
+//nao sei se realmente posso fazer isso
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 1
+#endif
+
 
 char	*get_next_line(int fd)
 {
-	char	*str;
-	int		i;
-	size_t	size;
-	int		buffer = 100;
-	char 	c;
+	static char	*resto; //depois mudar o nome para ingles
+	char		*line;
+	int 		bytes_read;
+	int			i;
 
-	// preciso alocar memoria para str. mas como? tenho recebendo o BUFFER
+	line = (char *) malloc(BUFFER_SIZE + 1);
 
-	size = read(fd, &c, 1);
-	if (size <= 0) //se deu erro (-1), ou esta no fim do arquivo (0) arquivo nao tem nada
-	{
-		return(NULL);
-	}
-
-	//to alocando 2 por enquanto, porque é para o primeiro caractere mesmo que /n e o /0 no fim
-	str = (char *) malloc (2);
-	if (!str)
-		return(NULL);
-
-	//se chagar aqui é pq tem coisa no c
+    // ve se tem algo no 'resto' da última chamada
 	i = 0;
-	str[i++] = c; //coloca o primeiro carctere
-	str[i] = '\0'; //e o fim dele, porque o primeiro pode ser um \n
-
-	while(c != '\n' && (size = read(fd, &c, 1)) > 0 && i <= buffer)
+	if (resto)
 	{
-		str = ft_join(str, c);
-		i++;
+		if (resto[i] == '\n' && ft_strlen(resto) == (i + 1))
+		{
+			line = ft_realloc(resto, BUFFER_SIZE + 1, i + 1);
+			return (resto);
+		}
+		//ve se tem um \n
+		//se tiver ele retorna ate o \n
 	}
-	if (size == -1)
-    	return (NULL);
-	return (str);
+    // 2. Se não, lê BUFFER_SIZE bytes do arquivo
+    // 3. Procura por \n no que foi lido
+    // 4. Se encontrou: retorna linha + guarda o resto
+    // 5. Se não encontrou: continua lendo
 }
