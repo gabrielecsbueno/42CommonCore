@@ -8,7 +8,7 @@ int	main(int argc, char **argv)
 	int		fd; //identificador do arquivo para manipulacao
 	char	*line; //onde ira guardar o arquivo lido
 
-/*--------------- essa parte aqui nao sera usada no reste oficial
+/*--------------- essa parte aqui nao sera usada no resto oficial
 	printf("%s\n", argv[0]);//nome do executabel
 	printf("%s\n", argv[1]);//nome do primeiro argumento depois no nome do executavel
 	printf("%d\n", argc);//quantidade de argumentos contando com o executavel
