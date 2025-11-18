@@ -66,7 +66,7 @@ char	*get_next_line(int fd)
 	}
 	//ja faco free no buffer porque nao uso mais
 	free(buffer);
-//procura onde esta o \n e retorna o indice
+//busca donde esta el \n y retorna el indice
 	index = ft_strindex(resto, '\n');
 	//SE TEM \n (index)??
 	
