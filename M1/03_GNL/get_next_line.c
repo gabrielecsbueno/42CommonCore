@@ -17,9 +17,9 @@ char	*get_next_line(int fd)
 	static char	*resto = NULL;
 	size_t		bytes_read;
 	char		*buffer;
-	size_t		index;
+	int		index;
 	char		*temp;
-	char		*line;//vai esta em uma funcao
+	char		*line;//essa vai esta em uma funcao
 
 //antes de comecar o loop
 	//verificacao inicial
@@ -34,58 +34,52 @@ char	*get_next_line(int fd)
 		resto = (char *)malloc(1);
 
 //loop principal
-	//ENQUANTO não encontrou uma linha completa
-	while (!ft_strchr(resto, '\n') && bytes_read)
+	//ENQUANTO NAO encontrou um \n, nao tem linha completa
+	while (ft_strindex(resto, '\n') == -1)
 	{
 		//le o arquivo nos proximos BUFFER_SIZE
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		//SE ele devolveu -1, eh erro, entao tem que sair
+		if(bytes_read < 0)
+		{
+			free(buffer);
+			return (NULL);
+		}
+		//SE leu 0 bytes (EOF), quer dizer que chegou no fim do arquivo
+		if(bytes_read == 0)
+		{
+			free(buffer);
+			line = ft_strdup(resto);
+			free(resto);
+			return(line);
+		}
+		//SE leu mais que 1 byte
 		//fecha ele para nao esta aberto
 		buffer[bytes_read] = '\n';
 		//usa um temporario para guardar o que foi pego no loop anterior
-		temp = *resto;
+		temp = resto;
 		//aloca o novo valor de resto com o que foi lido no loop
 		resto = ft_strjoin(temp, buffer);
 		//libera o temporario para a proxima utilizacao
 		free(temp);
+		//e volta para o loop
 	}
+	//ja faco free no buffer porque nao uso mais
 	free(buffer);
-	//agora tem uma linha completa no 'resto'
-	//procura onde esta o \n e retorna o indice
+//procura onde esta o \n e retorna o indice
 	index = ft_strindex(resto, '\n');
-	//SE TEM \n (index)
-	if (index)
-	{
-		//passa para o temporario
-		temp = *resto;
-		//copia o resto ate o \n para a linha
-		line = ft_substr(resto, 0, index);
-		//ESTOU AQUI
-	}
-
-
-	while (/*não encontrou uma linha completa */)
-	{
-		//SE tem conteúdo no 'resto'
-		if (resto)
-		{
-			//PROCURA \n no resto
-			//SE encontrou \n
-			if (index != 0)
-			{
-				//RETORNA linha + ATUALIZA resto
-				line = ft_substr(resto, 0, index);
-				resto = ft_substr(resto, index + 1, ft_strlen(resto));
-			}
-		}
-	}
-//    SENÃO:
-//        LÊ BUFFER_SIZE bytes
-//        SE leu 0 bytes (EOF):
-//            RETORNA o que tem no resto (se tiver)
-//        SE leu -1 (erro):
-//            RETORNA NULL
-//        ADICIONA o lido ao resto
-
+	//SE TEM \n (index)??
+	
+	//passa tudo para o temporario
+	temp = resto;
+	//copia o resto ate o \n para a linha
+	line = ft_substr(resto, 0, index);
+	//passa o que sobrou para o resto
+	resto = ft_substr(temp, (index + 1), ft_strlen(temp));
+	//libera o temporario porque nao usara mais
+	free(temp);
+	//RETORNA linha e resto atualizado
+	return (line);
 }
 
 /*

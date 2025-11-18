@@ -12,21 +12,8 @@
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s)
-	{
-		if ((unsigned char)*s == (unsigned char)c)
-			return ((char *) s);
-		s++;
-	}
-	if ((char)c == '\0')
-		return ((char *)s);
-	return (NULL);
-}
-
 //busca um \n em um str, retorna o indice se encontrar ou NULL se nao
-size_t	ft_strindex(const char *s, char c)
+int	ft_strindex(const char *s, char c)
 {
 	size_t	i;
 
@@ -37,9 +24,7 @@ size_t	ft_strindex(const char *s, char c)
 			return (i);
 		i++;
 	}
-	if (c == '\0')
-		return (i);
-	return (NULL);
+	return (-1);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -104,18 +89,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (dest);
 }
 
-/*
-int	ft_isline(const char *s)
-{
-	while(*s)
-	{
-		if (*s == '\n')
-			return (1);
-	}
-	return (0);
-}
-
-static void	*ft_memcpy(void *dest, const void *src, size_t n)//essa tem que tirar
+//essa tem que tirar e juntar no de baixo
+static void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t				i;
 	const unsigned char	*byte_s;
@@ -133,6 +108,45 @@ static void	*ft_memcpy(void *dest, const void *src, size_t n)//essa tem que tira
 	}
 	return (dest);
 }
+// --------------
+char	*ft_strdup(const char *s)
+{
+	char	*dest;
+	size_t	size;
+
+	size = ft_strlen(s);
+	dest = (char *) malloc (sizeof(char) * (size + 1));
+	if (dest == NULL)
+		return (NULL);
+	ft_memcpy(dest, s, size);
+	dest[size] = '\0';
+	return (dest);
+}
+
+/*
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if ((unsigned char)*s == (unsigned char)c)
+			return ((char *) s);
+		s++;
+	}
+	if ((char)c == '\0')
+		return ((char *)s);
+	return (NULL);
+}
+
+int	ft_isline(const char *s)
+{
+	while(*s)
+	{
+		if (*s == '\n')
+			return (1);
+	}
+	return (0);
+}
+
 char	*ft_strdup(const char *s)
 {
 	char	*dest;

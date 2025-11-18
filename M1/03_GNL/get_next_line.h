@@ -23,13 +23,11 @@
 char	*get_next_line(int fd);
 
 //int	ft_isline(const char *s);
-char	*ft_strchr(const char *s, int c);
-size_t	ft_strindex(const char *s, char c);
-//char	*ft_strdup(const char *s);
+//char	*ft_strchr(const char *s, int c);
+int	ft_strindex(const char *s, char c);
+char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlen(const char *s);
-//char	*ft_strjoin(char const *s1, char const *s2);
-
 //void	*ft_realloc(void *str, size_t old_size, size_t new_size);
 char	*ft_strjoin(char const *s1, char const *s2);
 #endif
