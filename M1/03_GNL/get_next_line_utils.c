@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:27:32 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/11/17 15:35:36 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/11/20 18:35:30 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_strindex(const char *s, char c)
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return (-1);
 	while (s[i])
 	{
 		if (s[i] == c)
@@ -35,6 +37,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	slen = ft_strlen(s);
+	if (start >= slen)
+		return (ft_strdup(""));
 	if (len > slen - start)
 		len = slen - start;
 	d = (char *) malloc (len + 1);
