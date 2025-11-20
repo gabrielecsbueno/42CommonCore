@@ -3,24 +3,28 @@
 #include <fcntl.h> //open
 #include <unistd.h> //close
 
+/*
+ATENCAO AO QUERIDOS
+
+Um teste interessante para fazer e verificar os leaks de memorias. Para isso, no terminal compile:
+
+cc -Wall -Wextra -Werror *.c -g
+valgrind --leak-check=full --show-leak-kinds=all -s --track-origins=yes ./a.out
+
+OU (no meu caso):
+
+clang -Wall -Wextra -Werror -g -D BUFFER_SIZE=42 *.c && valgrind --tool=memcheck -q --leak-check=full --show-leak-kinds=all -s --track-origins=yes ./a.out *.txt | cat -e
+*/
 int	main(int argc, char **argv)
 {
-	int		fd; //identificador do arquivo para manipulacao
-	char	*line; //onde ira guardar o arquivo lido
-
-/*--------------- essa parte aqui nao sera usada no resto oficial
-	printf("%s\n", argv[0]);//nome do executabel
-	printf("%s\n", argv[1]);//nome do primeiro argumento depois no nome do executavel
-	printf("%d\n", argc);//quantidade de argumentos contando com o executavel
-*/
+	int		fd;
+	char	*line;
 
 	if (argc != 2)
 	{
-    	printf("É necessario um arquivo para leitura do programa!");
+    		printf("É necessario um arquivo para leitura do programa!");
 		return (-1);
-    }
-
-	// Abre o arquivo para leitura
+    	}
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 	{
@@ -38,11 +42,10 @@ int	main(int argc, char **argv)
 		free(line);
 		line = get_next_line(fd);
 	}
-	// Fecha o arquivo
-    if (close(fd) == -1)
+	if (close(fd) == -1)
 	{
-        printf("Erro ao fechar o arquivo!");
+		printf("Erro ao fechar o arquivo!");
 		return (-1);
-    }
+	}
 	return (0);
 }
