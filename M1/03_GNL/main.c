@@ -35,19 +35,18 @@ int	main(int argc, char **argv)
 
 	// Passa para a funcao que retorna a linha lida
 	line = get_next_line(fd);
-	/*while (line != NULL)
+	while (line != NULL)
 	{
-		printf("%s", line);
+		printf(" --- %s \n", line);
 		// Precisa fazer o free antes de chamar a proxima linha
 		free(line);
 		line = get_next_line(fd);
 	}
-	*/
-	
-	printf("%s", line);
+
 	line = get_next_line(fd);
-	printf("%s", line);
-	
+	printf(" --- %s \n", line);
+	free(line);
+
 	if (close(fd) == -1)
 	{
 		printf("Erro ao fechar o arquivo!");

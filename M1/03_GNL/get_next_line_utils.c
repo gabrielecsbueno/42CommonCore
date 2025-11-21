@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:27:32 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/11/20 18:35:30 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/11/21 12:30:22 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,36 +92,22 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (dest);
 }
 
-//essa tem que tirar e juntar no de baixo
-static void	*ft_memcpy(void *dest, const void *src, size_t n)
-{
-	size_t				i;
-	const unsigned char	*byte_s;
-	unsigned char		*byte_d;
-
-	if (!dest && !src)
-		return (NULL);
-	byte_s = (const unsigned char *)src;
-	byte_d = (unsigned char *)dest;
-	i = 0;
-	while (i < n)
-	{
-		byte_d[i] = byte_s[i];
-		i++;
-	}
-	return (dest);
-}
-// --------------
 char	*ft_strdup(const char *s)
 {
 	char	*dest;
 	size_t	size;
+	size_t	i;
 
 	size = ft_strlen(s);
 	dest = (char *) malloc (sizeof(char) * (size + 1));
-	if (dest == NULL)
+	if (!dest)
 		return (NULL);
-	ft_memcpy(dest, s, size);
+	i = 0;
+	while (i < size)
+	{
+		dest[i] = s[i];
+		i++;
+	}
 	dest[size] = '\0';
 	return (dest);
 }
