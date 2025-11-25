@@ -6,23 +6,21 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:24:02 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/11/17 15:22:31 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/11/25 10:55:51 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# include <stdlib.h> //malloc e free
-# include <unistd.h> //read
+# include <stdlib.h>
+# include <unistd.h>
 
-//nao sei se realmente posso fazer isso
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 40
+# endif
 
 char	*get_next_line(int fd);
-
-int	ft_strindex(const char *s, char c);
+int		ft_strindex(const char *s, char c);
 char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlen(const char *s);

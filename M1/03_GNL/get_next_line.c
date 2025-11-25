@@ -6,146 +6,88 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:26:16 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/11/21 21:07:04 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/11/25 10:45:02 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static void	ft_free_resto(char **resto);
-static char *ft_search_next_line(int fd, char *resto, char *buffer);
+static void	ft_free_remainder(char **remainder);
+static char	*ft_search_next_line(int fd, char **remainder);
+static char	*ft_update_remainder(char *remainder, int index);
 
 char	*get_next_line(int fd)
 {
-	static char	*resto = NULL;
-	int			bytes_read;
-	char		*buffer;
+	static char	*remainder = NULL;
 	int			index;
-	char		*temp;
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-	{
-		ft_free_resto(&resto);
+		return (ft_free_remainder(&remainder), NULL);
+	if (!remainder)
+		remainder = ft_strdup("");
+	if (!remainder)
 		return (NULL);
-	}
-	if (!resto)
-	{
-		resto = ft_strdup("");
-		if (!resto)
-			return (NULL);
-	}
-	buffer = (char *)malloc(BUFFER_SIZE + 1);
-	if (!buffer)
-	{
-		ft_free_resto(&resto);
+	remainder = ft_search_next_line(fd, &remainder);
+	if (!remainder)
 		return (NULL);
-	}
-	resto = ft_search_next_line(fd, resto, buffer);
-	if (!resto)
-			return (NULL);
-	while (ft_strindex(resto, '\n') == -1)
+	index = ft_strindex(remainder, '\n');
+	if (index != -1)
 	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read < 0)
-		{
-			free(buffer);
-			ft_free_resto(&resto);
-			return (NULL);
-		}
-		if (bytes_read == 0)
-		{
-			free(buffer);
-			if (resto && resto[0] != '\0')
-			{
-				line = ft_strdup(resto);
-				ft_free_resto(&resto);
-				if (!line)
-					return (NULL);
-				return (line);
-			}
-			ft_free_resto(&resto);
-			return (NULL);
-		}
-		buffer[bytes_read] = '\0';
-		temp = resto;
-		resto = ft_strjoin(temp, buffer);
-		free(temp);
-		if (!resto)
-		{
-			free(buffer);
-			return (NULL);
-		}
-	}
-	free(buffer);
-	index = ft_strindex(resto, '\n');
-	if (index)
-	{
-		line = ft_substr(resto, 0, index + 1);
+		line = ft_substr(remainder, 0, index + 1);
 		if (!line)
-		{
-			ft_free_resto(&resto);
-			return (NULL);
-		}
-		temp = resto;
-		resto = ft_substr(temp, index + 1, ft_strlen(resto) - index - 1);
-		free(temp);
-		if (!resto)
-		{
-			free(line);
-			resto = NULL;
-			return (NULL);
-		}
+			return (ft_free_remainder(&remainder), NULL);
+		remainder = ft_update_remainder(remainder, index);
 		return (line);
 	}
-	line = ft_strdup(resto);
-	ft_free_resto(&resto);
-	if (!line)
-		return (NULL);
+	line = ft_strdup(remainder);
+	ft_free_remainder(&remainder);
 	return (line);
 }
 
-static void	ft_free_resto(char **resto)
+static void	ft_free_remainder(char **remainder)
 {
-	if (resto && *resto)
+	if (remainder && *remainder)
 	{
-		free(*resto);
-		*resto = NULL;
+		free(*remainder);
+		*remainder = NULL;
 	}
 }
-/*
-static char *ft_search_next_line(int fd, char *resto, char *buffer)
+
+static char	*ft_search_next_line(int fd, char **remainder)
 {
 	int			bytes_read;
 	char		*temp;
+	char		*buffer;
 
-	while (ft_strindex(resto, '\n') == -1)
+	buffer = (char *)malloc(BUFFER_SIZE + 1);
+	if (!buffer)
+		return (ft_free_remainder(remainder), NULL);
+	while (ft_strindex(*remainder, '\n') == -1)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read < 0)
+		if (bytes_read <= 0)
 		{
-			free(buffer);
-			ft_free_resto(&resto);
-			return (NULL);
-		}
-		if (bytes_read == 0)
-		{
-			free(buffer);
-			if (resto && resto[0] != '\0')
-				return (resto);
-			ft_free_resto(&resto);
-			return (NULL);
+			if (bytes_read == 0 && *remainder && (*remainder)[0] != '\0')
+				return (free(buffer), *remainder);
+			return (ft_free_remainder(remainder), free(buffer), NULL);
 		}
 		buffer[bytes_read] = '\0';
-		temp = resto;
-		resto = ft_strjoin(temp, buffer);
+		temp = *remainder;
+		*remainder = ft_strjoin(temp, buffer);
 		free(temp);
-		if (!resto)
-		{
-			free(buffer);
-			return (NULL);
-		}
+		if (!*remainder)
+			return (free(buffer), ft_free_remainder(remainder), NULL);
 	}
-	return (resto);
+	return (free(buffer), *remainder);
 }
-	*/
+
+static char	*ft_update_remainder(char *remainder, int index)
+{
+	char	*temp;
+
+	temp = remainder;
+	remainder = ft_substr(temp, index + 1, ft_strlen(remainder) - index - 1);
+	free(temp);
+	return (remainder);
+}
