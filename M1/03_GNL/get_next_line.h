@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:24:02 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/11/25 10:55:51 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/11/25 12:23:51 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # endif
 
 char	*get_next_line(int fd);
-int		ft_strindex(const char *s, char c);
 char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlen(const char *s);

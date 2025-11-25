@@ -6,7 +6,7 @@
 /*   By: gabde-so <gabde-so@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:26:16 by gabde-so          #+#    #+#             */
-/*   Updated: 2025/11/25 10:45:02 by gabde-so         ###   ########.fr       */
+/*   Updated: 2025/11/25 12:24:02 by gabde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	ft_free_remainder(char **remainder);
 static char	*ft_search_next_line(int fd, char **remainder);
 static char	*ft_update_remainder(char *remainder, int index);
+static int	ft_strindex(const char *s, char c);
 
 char	*get_next_line(int fd)
 {
@@ -80,6 +81,22 @@ static char	*ft_search_next_line(int fd, char **remainder)
 			return (free(buffer), ft_free_remainder(remainder), NULL);
 	}
 	return (free(buffer), *remainder);
+}
+
+static int	ft_strindex(const char *s, char c)
+{
+	size_t	i;
+
+	i = 0;
+	if (!s)
+		return (-1);
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (i);
+		i++;
+	}
+	return (-1);
 }
 
 static char	*ft_update_remainder(char *remainder, int index)
