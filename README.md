@@ -1,4 +1,14 @@
-## <img src="https://emojis.slackmojis.com/emojis/images/1687735546/66769/smart.gif?1687735546" width="60"/>    Piscine Reloaded
+# 💻 42 - Commun Core
 
-Esta série de exercícios ajudará a lembrar todos os conceitos básicos aprendidos na Piscina C. 
-Funções, loops, ponteiros, estruturas, tudo para relembrar as bases sintáticas e semânticas da linguagem C.
+Esta série de projetos do Commun Core, currículo da 42 Barcelona com foco nos fundamentos da engenharia de software/programação.
+
+## 🛠 Áreas de especialidade
+
+- Programação imperativa em C
+- Programação Orientada a Objetos em Python
+- Estruturas de Dados e Algoritmos
+- Inteligência Artificial
+- Programação concorrente
+- Programação de redes
+- Administração de Redes e Sistemas
+- Programação gráfica
