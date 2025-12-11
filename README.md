@@ -1,6 +1,6 @@
-# 💻 42 - Commun Core
+# 💻 42 - Common Core
 
-Esta série de projetos do Commun Core, currículo da 42 Barcelona com foco nos fundamentos da engenharia de software/programação.
+Esta série de projetos do Common Core, currículo da 42 Barcelona com foco nos fundamentos da engenharia de software/programação.
 
 ## 🛠 Áreas de especialidade
 
