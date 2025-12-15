@@ -31,6 +31,17 @@ $ sha1sum Born2beRoot.vdi #Na pasta do projeto Born2beRoot
 $ cat Signature.txt #Arquivo do repositorio
 ```
 
+## **Recursos**
+
+[Sistema operacional Debian](https://www.debian.org/distrib/)
+
+[Informacion sobre firewalls](https://www.rootzilopochtli.com/introduccion-a-la-seguridad-y-el-firewall)
+
+[Informacion sobre LSMs](https://tuxcare.com/blog/selinux-vs-apparmor/)
+
+[info sobre 42Barcelona](https://www.42barcelona.com/es/)
+
+
 ## **Descripción del proyecto**
 
 ### **1. Debian vs Rocky Linux**
@@ -81,13 +92,3 @@ VirtualBox hace una virtualización directa del hardware y ofrece un mejor rendi
 UTM, basado en QEMU (Quick Emulator), permite tanto la virtualización como la emulación, siendo más útil en Macs, donde es necesario emular la arquitectura x86.
 
 En este proyecto, se eligió VirtualBox porque se utiliza en un ordenador con procesador Intel, lo que permite la virtualización nativa, un mejor rendimiento y una mayor estabilidad.
-
-## **Recursos**
-
-[Sistema operacional Debian](https://www.debian.org/distrib/)
-
-[Informacion sobre firewalls](https://www.rootzilopochtli.com/introduccion-a-la-seguridad-y-el-firewall)
-
-[Informacion sobre LSMs](https://tuxcare.com/blog/selinux-vs-apparmor/)
-
-[info sobre 42Barcelona](https://www.42barcelona.com/es/)
