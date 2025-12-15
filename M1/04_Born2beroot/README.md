@@ -12,7 +12,7 @@ El sistema Debian utilizado en este proyecto utiliza el kernel Linux.
 
 El kernel es el programa más fundamental del ordenador, se encuentra en el núcleo del sistema operativo y realiza todas las operaciones más básicas, lo que le permite ejecutar otros programas.
 
-Toda la informacion especifica del proyecto esta en el [subject](https://cdn.intra.42.fr/pdf/pdf/189113/en.subject.pdf) de 42.
+Toda la informacion especifica del proyecto esta en el subject de 42.
 
 ## **Instrucciones**
 
